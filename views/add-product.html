@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Product</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100">
+  <div class="container mx-auto p-6">
+    <h1 class="text-2xl font-semibold mb-4">Add Product</h1>
+    <form class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4" action="/adminProductManagement/createProduct"
+     method="post" enctype="multipart/form-data">
+      <!-- Product Image Upload -->
+      <div class="mb-4">
+        <label for="productImage" class="block text-gray-700 text-sm font-bold mb-2">Product Image</label>
+        <input type="file" id="productImage" name="image"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          multiple accept="image/*">
+      </div>
+
+      <!-- Product Name -->
+      <div class="mb-4">
+        <label for="productName" class="block text-gray-700 text-sm font-bold mb-2">Product Name</label>
+        <input type="text" id="productName" name="productName"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          required>
+      </div>
+
+      <!-- Product Description -->
+      <div class="mb-4">
+        <label for="productDescription" class="block text-gray-700 text-sm font-bold mb-2">Description</label>
+        <textarea id="productDescription" name="productDescription" rows="4"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          required></textarea>
+      </div>
+
+      <!-- Category -->
+  <div class="mb-4">
+    <label for="category" class="block text-gray-700 text-sm font-bold mb-2">Category</label>
+    <select id="category" name="categoryProduct"
+      required>
+       <option value="browny">browny</option>
+        <option value="browny">cake</option>
+        <option value="browny">happ</option>
+      <!-- show  all the category in this product list   using foreach method  -->
+     
+      <!-- <% displayCategory.forEach((list, index)=> { %>
+        <option value="<%= list.product_category %>">
+          <%= list.product_category %>
+        </option>
+        <% }) %> -->
+      
+    </select>
+  </div>
+
+      <!-- Product Price -->
+      <div class="mb-4">
+        <label for="productPrice" class="block text-gray-700 text-sm font-bold mb-2">Price (USD)</label>
+        <input type="number" id="productPrice" name="productPrice" min="0" step="0.01"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          required>
+      </div>
+
+      <!-- Product Discount -->
+      <div class="mb-4">
+        <label for="productDiscount" class="block text-gray-700 text-sm font-bold mb-2">Discount (%)</label>
+        <input type="number" id="productDiscount" name="productDiscount" min="0" max="100" step="0.01"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+      </div>
+
+
+      <!-- product brand -->
+
+        <div class="mb-6">
+          <label for="productBrand" class="block text-gray-700 text-sm font-bold mb-2">Brand</label>
+          <input type="text" id="productBrand" name="productBrand" min="1"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            required>
+        </div>
+
+      <!-- Product Quantity -->
+      <div class="mb-6">
+        <label for="productQuantity" class="block text-gray-700 text-sm font-bold mb-2">Quantity</label>
+        <input type="number" id="productQuantity" name="productQuantity" min="1"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          required>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="flex items-center justify-between">
+        <button type="submit"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+          Add Product
+        </button>
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>

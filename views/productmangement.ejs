@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/productadppage.css">
+    <title>admin page</title>
+    <!-- bootstrap link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!--  -->
+    <!-- Import bootstrap cdn -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <!-- Import jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+        </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
+        </script>
+    <!--  -->
+
+</head>
+
+<body>
+    <div class="container_main ">
+        <div class="sidebar">
+            <!-- Your sidebar content goes here -->
+            <div class="profile_bar">
+                <form class="circle" action="/logout" method="get">
+                    <img src="/image2/admin.png" alt="Profile Image">
+                    <p class="admintag">admin </p>
+                    <button id="logoutbtn" type="submit"><img width="20px" src="/image2/logout.png"
+                            alt="logout"></button>
+                </form>
+            </div>
+      <a href="/admin/usermanagement"><button class="button"  style=" background-color: brown;">Dashboard</button></a>
+
+          <button  id="toggleButton" class="button" style=" background-color: brown; ">User Management</button>
+            <div class="usermanagementdiv" style="display: none;" id="usermanagementdiv">
+
+                <form action="/admin" method="get" class="button-container">
+
+                    <button type="submit" class="button">All Users</button>
+
+                </form>
+                <a href="/admin/usermanagementblock/:userId"><button class="button">blocked users</button></a>
+
+                <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="button">Create new user</button>
+            </div>
+      <a href="/admin/usermanagement"><button class="button"  style=" background-color: rgb(50, 23, 23);">Product Mangement</button></a>
+      <a href="/admin/usermanagement"><button class="button"  style=" background-color: brown;">Order Mangement</button></a>
+      <a href="/admin/usermanagement"><button class="button"  style=" background-color: brown;">Category</button></a>
+      <a href="/admin/usermanagement"><button class="button"  style=" background-color: brown;">Coupons</button></a>
+
+
+
+        </div>
+
+        <form class="search-bar" action="/admin/usermanagement/search" method="get">
+            <h1>Product Mangement</h1>
+            <input type="text" name="key" id="search-input" placeholder="Search...">
+            <button type="submit" id="search-button">
+                <img src="/image2/search.png" width="30px" alt="Search Icon">
+            </button>
+        </form>
+
+        <!-- Your scrollable content goes here -->
+
+        <div class="scrollable-content">
+            <div class="box">
+                
+                <% productlist.forEach(product=> { %>
+
+
+
+                    <div class="inner-box ">
+                        <div class="item">
+                            <img src="\<%=product.product_image_url[0]%>" width="50px" alt="!">
+                        </div>
+                        <div class="item">
+                            <label for="p" id="labelname">name:</label>
+                          
+                            <p id="pname">
+                                <%=product.product_name%>
+                            </p>
+                            <p style="position: absolute; font-size: 14px; top: 50%; "><%=product.product_description%></p>
+                            <p style="position: absolute; font-size: 14px; top: 13%;  left: 58%; ">category:<%=product.product_description%></p>
+                            <p style="position: absolute; font-size: 14px; top: 50%;  left: 64%; ">QTY:<%=product.product_qty%></p>
+
+
+                             
+                        </div>
+                        <div class="item">
+
+
+
+                        </div>  
+
+                        <div class="item icons">
+
+                            <button data-userid="<%= product._id %>" data-username="<%=product.product_name%>" id="clsbtn" type="button"
+                                class="btn_icon" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                data-bs-whatever="@mdo ">
+                                <img src="/image2/delete.png" width="23px" alt="">
+                            </button>
+                            <button class="btn_icon" data-userid="<%= product._id %>" data-username="<%=product.product_name%>"
+                                 id="updatebtn" type="button" data-bs-toggle="modal"
+                                data-bs-target="#editModal" data-bs-whatever="@mdo ">
+                                <img src="/image2/update.png" width="25px" alt="">
+                            </button>
+    
+                        </div>
+    
+    
+    
+    
+    
+    
+                    </div>
+                    <%})%>
+                
+                <button id="createnew" type="button" data-bs-toggle="modal" data-bs-target="#createproduct">new</button>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <!-- Modal FOR creating new User -->
+    <div class="modal fade" id="createproduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+        data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered modelstyle ">
+            <div class="modal-content inner">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="/admin/productmangement" method="post" id="signupForm" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <!--  -->
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="productname" placeholder="name" name="productname">
+                                <label for="newUsername">productname</label>
+                            </div>
+                            <!--  -->
+                            <div class="form-floating mb-3">
+                                <input type="file" class="form-control" id="productimg" name="image"  multiple accept="image/*" >
+                            </div>
+                            <!--  -->
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="description" placeholder="name" name="description">
+                                <label for="newUsername">Description</label>
+                            </div>
+                            <!--  -->
+                            <div class="form-floating mb-3">
+                              
+                                <select id="category" name="category"
+                                required>
+                                 <option value="browny">browny</option>
+                                  <option value="browny">cake</option>
+                                  <option value="browny">happ</option>
+                                </select>
+                            </div>
+                            <!--  -->
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="productprice" placeholder="productprice" name="productprice">
+                                <label for="newUsername">Price (USD)</label>
+                            </div>
+                            <!--  -->
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="quantity" placeholder="productprice" name="quantity">
+                                <label for="newUsername">Quantity</label>
+                            </div>
+                            <!--  -->
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" id="submit">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- end  -->
+        <!-- Modal for deleting the user -->
+        <div class="modal fade modelstyle" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog  ">
+            <div class="modal-content inner">
+                <div class="modal-header modeltext">
+                    <h1 class="modal-title fs-5" id="deleteModalLabel">Delete_ <span id="name_user"></span>_From Data
+                        Base
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body modeltext">
+                    Do you really want to delete this user ?<br>
+                    <span style="color: red;">Warning</span>: This data is deleted permanently from the database.
+                </div>
+                <div class="modal-footer modeltext">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger delete-button" id="CNFcls" value="">DELETE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+         <!-- end -->
+
+    <script>
+
+ 
+
+document.getElementById('toggleButton').addEventListener('click', function() {
+    var x = document.getElementById('usermanagementdiv');
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+    });
+ 
+//form validation for creating new user
+const signupForm = document.getElementById('signupForm');
+const newUsername = document.getElementById('newUsername');
+const newConfirmPassword = document.getElementById('Cpassword');
+const newPassword = document.getElementById('newPassword');
+
+signupForm.addEventListener('submit', (event) => {
+  const username = newUsername.value.trim();
+  const password = newPassword.value;
+  const confirmPassword = newConfirmPassword.value;
+
+  const errors = [];
+
+  if (username.length < 5) {
+    errors.push('Username must have at least 5 characters');
+  }
+  if (username.value < 5) {
+    errors.push('Username must have at least 5 characters');
+  }
+  if (password.length == '' || confirmPassword.length == '') {
+    errors.push('must need a password');
+  }
+
+  if (password !== confirmPassword) {
+    errors.push('Passwords do not match');
+  }
+
+  if (errors.length > 0) {
+    event.preventDefault(); // Prevent the form from submitting
+    const errorMessage = errors.join('\n');
+    alert(errorMessage);
+  } else {
+    console.log('Form is valid. Submitting...');
+    // The form will be submitted as usual because there are no errors.
+  }
+});
+
+
+
+// end
+let editModal = document.getElementById('editModal')
+editModal.addEventListener('show.bs.modal', function (event) {
+  // Button that triggered the modal
+  let button = event.relatedTarget
+  // Extract info from data-bs-* attributes
+  let userName = button.getAttribute('data-username')
+  let email = button.getAttribute('data-email')
+  let userId = button.getAttribute('data-userid')
+  // Update the input's value
+  let inputUserId = editModal.querySelector('#username')
+  let inputEmail = editModal.querySelector('#email')
+  let Uid = editModal.querySelector('#Uid')
+  inputUserId.value = userName
+  inputEmail.value = email
+  Uid.value = userId
+  console.log(`id from befor the model${userId}`);
+})
+// _______________________________________
+
+// form validation for update
+const updateuser = document.getElementById('updateuser');
+const editUsername = document.getElementById('username');
+const editEmail = document.getElementById('email');
+
+updateuser.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const userId = document.getElementById('Uid').value
+  const username = editUsername.value;
+  const email = editEmail;
+  const errors = [];
+  // 
+  const updatedData = {
+    name: editUsername.value,
+    email: editEmail.value,
+  };
+  const response = await fetch(`/admin/usermanagement/${userId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(updatedData)
+  });
+  if (response.ok) {
+    window.location.reload();
+  } else {
+    console.error('Error updating user');
+  }
+
+
+});
+
+
+
+let deleteModel = document.getElementById('deleteModal');
+deleteModel.addEventListener('show.bs.modal', function(event) {
+   alert("name")
+
+  // Button that triggered the modal
+  let button = event.relatedTarget;
+  let userId = button.getAttribute('data-userid');
+  let userName = button.getAttribute('data-username');
+
+  let Uid = deleteModal.querySelector('#CNFcls');
+  Uid.value = userId;
+  // Set the user._id value to the name_user element
+  let nameUserElement = document.getElementById('name_user');
+  nameUserElement.textContent = userName;
+});
+
+
+//  <!-- Deleting the data -->
+
+const deleteButton = document.querySelector('.delete-button');
+deleteButton.addEventListener('click', async (event) => {
+    console.log("hi it work")
+  const userId = document.getElementById('CNFcls')
+  const response = await fetch(`/admin/usermanagement/${userId.value}`, {
+    method: 'DELETE'
+  });
+  if (response.ok) {
+    // Refresh the page or update the user list
+    window.location.reload();
+  } else {
+    console.error('Error deleting user');
+  }
+});
+
+const userblock = document.querySelectorAll(".btnblock"); // Change the selector to select elements with class "btn_icon"
+
+userblock.forEach((data) => {
+    data.addEventListener('click', async (event) => {
+        console.log("user blocked");
+        let button = event.currentTarget; // Use event.currentTarget to get the clicked button
+        console.log(button);
+        let userId = button.getAttribute('data-userid');
+
+        const data = {
+            userid: userId
+        };
+
+        try {
+            const response = await fetch(`/admin/usermanagement/${userId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+                window.location.reload();
+            } else {
+                console.error('Error updating user');
+            }
+        } catch (error) {
+            console.error('An error occurred:', error);
+        }
+    });
+});
+
+
+
+
+
+// block
+const btnunblock = document.querySelectorAll(".btnunblock");
+btnunblock.forEach((data) => {
+    data.addEventListener('click', async (event) => {
+        console.log("user unblock");
+        let button = event.currentTarget; // Use event.currentTarget to get the clicked button
+        console.log(button);
+        let userId = button.getAttribute('data-userid');
+
+        const data = {
+            userid: userId
+        };
+
+        try {
+            const response = await fetch(`/admin/usermanagementblock/${userId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+                window.location.reload();
+            } else {
+                console.error('Error updating user');
+            }
+        } catch (error) {
+            console.error('An error occurred:', error);
+        }
+    });
+});
+
+
+
+
+
+    </script>
+
+
+
+</body>
+
+</html>
