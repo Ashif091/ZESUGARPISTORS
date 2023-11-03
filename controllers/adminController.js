@@ -285,7 +285,15 @@ module.exports = {
 
 })
 
-    
+,
+
+check:(req, res) => {
+    let data = {
+        "data": "Your name is kannada",
+        "color":"rgb(98, 77, 77)"
+      };
+    res.json(data);
+  }
 
     
 }

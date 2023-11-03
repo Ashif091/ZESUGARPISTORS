@@ -42,7 +42,9 @@ body {
     background-color: transparent;
     border: 2px solid rgb(68, 42, 42);
     border-radius: 30px;
-    margin-left: 40%;
+    right: 20px ;
+    top: 10px;
+    position: absolute;
     color: #fff;
 }
 .button:focus{
@@ -61,7 +63,7 @@ body {
 
 .circle {
     width: 80%;
-    height: 100%;
+    height: 90%;
     border-radius: 300px;
     background-color:rgb(98, 59, 59); 
     border: 2px solid rgb(62, 30, 30);
@@ -130,13 +132,15 @@ body {
 /*  */
 
 .scrollable-content {
+    position: relative;
+
     width: 850px;
     border-radius: 20px;
     border:2px solid rgb(68, 30, 30);
     height: 500px;
     background-color: rgba(100, 91, 91, 0.852);
     margin-top: 15vh;
-    padding: 20px;
+    padding: 0px;
     margin-left: 24vw;
     overflow: hidden;
 
@@ -146,10 +150,10 @@ body {
     background-color: transparent; /* Hide the background of the scrollbar */
 }
 .box {
-    
-    margin-top: 50px;
-    width: 80%;
-    margin-left: 70px;
+    position: relative;
+    margin-top: 1rem;
+    width: 100%;
+    margin-left: 2rem;
     height: 400px; /* Total height of the 10 inner boxes (10 * 40px) */
     overflow-y: scroll; /* Enable vertical scrolling for the box */
     padding-bottom: 200px;
@@ -157,29 +161,93 @@ body {
    
 }
 .inner-box {
-   
-    height: 80px;
+    padding: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 140px;
+    width: 90%;
     border-radius: 12px;
     border: 1px solid rgb(68, 30, 30);
-    margin-top: 20px;
-    margin-bottom: 20px;
-    background-color: rgb(151, 126, 126); 
+    /* align-items: center; */
+    top: 20px;
+    left: 30px;
+    bottom: 20px;
+    background-color: rgb(151, 126, 126);
     box-shadow: 5px 5px 10px black;
-    /* grid */
     display: grid;
-    grid-template-columns: 1fr 3fr 1fr 2fr ; /* Defines the grid columns */
-    gap: 10px;
-     transition:  background-color 0.3s; 
-    
+    grid-template-columns: .5fr 3fr 2fr 1fr 1fr; /* Updated grid columns */
+    gap: 3px;
+    transition: background-color 0.3s;
+    margin-bottom: 20PX;
 }
-.inner-box:hover{
-    background-color: rgb(113, 88, 88); 
+.brownline{
+    position: absolute;
+    width: 90%;
+    margin-left: 1.3rem;
+    margin-top: 1.3rem;
+    height: 70%;
+    /* background-color:713200; */
 }
-.item{
+.item {
+    text-align: center;
+    margin: auto 0;
     position: relative;
     padding: 10px; /* Optional padding for items */
     color: white;
+    /* background-color: rgb(151, 126, 126); */
 }
+
+.inner-box:hover {
+    background-color: rgb(113, 88, 88);
+}
+.edit_btn{
+    background-color: rgb(161, 142, 142);
+    border-radius: 12px;
+    border: 2px solid rgb(90, 75, 75);
+    color: #fff;
+}
+
+.line {
+    position: absolute;
+    width: 5%;
+    height: 90px;
+    color: #fff;
+    
+    background-color: rgb(41, 21, 21);
+    text-align: center;
+}
+
+.imgdiv_product {
+    border: 1px solid rgb(117, 76, 76);
+    border-radius: 12px;
+    width: 70px;
+    height: 70px;
+    overflow: hidden;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imgdiv_product img {
+     
+    max-height: 100%;  
+    display: block;  
+    margin: 0 auto; 
+  }
+
+.imgtext{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+
+}
+.discription{
+    width: 12rem;
+    padding-left: .5rem;
+    overflow-wrap: break-word;   
+}
+
 .icons{
     display: grid;
     grid-template-columns: 1fr 1fr 2fr ;
@@ -286,7 +354,27 @@ body {
 }
 #logoutbtn img:hover{
     width: 25px;
+  
 }
 
 
 /* .inner  */
+
+/* lebal bar  */
+.labelbar {
+    position: relative;
+   text-align: center;
+    width: 100%;
+    height: 10%;
+}
+.lebel{
+    position: absolute;
+    padding-top: 10px;
+}
+.underline {
+    width: 80%;
+    height: 2px;
+    background-color: rgb(70, 32, 32);
+    margin-top: 10px;
+    margin-left: 10%;
+}
