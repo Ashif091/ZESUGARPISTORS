@@ -201,6 +201,7 @@ body {
 .inner-box:hover {
     background-color: rgb(113, 88, 88);
 }
+
 .edit_btn{
     background-color: rgb(161, 142, 142);
     border-radius: 12px;

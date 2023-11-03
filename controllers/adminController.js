@@ -108,7 +108,7 @@ module.exports = {
        quantity,
        category,
      } = req.body;
-      console.log("/createproduct ", req.body);
+      console.log("/xxxxxxxxxxxxxxxxxxx ", req.body);
      try {
        if (!req.files || req.files.length === 0) {
          return res.status(400).send('No files uploaded.');
@@ -116,7 +116,6 @@ module.exports = {
    
        const imagePaths = req.files.map(file => {
          let imagePath = file.path;
-   
          if (imagePath.includes('public\\')) {
            imagePath = imagePath.replace('public\\', '');
          } else if (imagePath.includes('public/')) {
@@ -136,10 +135,25 @@ module.exports = {
          product_image_url:imagePaths,
          
      })
+
         if(productdata){
          console.log("data will be saved in db",productdata);
         }
-       res.redirect('/admin/productmangement');
+        const productlist = await product.findOne({product_name:productname})
+
+
+        let data = {
+            "data": {productname,
+                description,
+                quantity,
+                imagePaths,
+                _id:productlist._id
+
+            
+            },
+            
+          };
+        res.json(data);
      } catch (error) {
        console.error('Error creating user:', error);
        res.status(500).send('Internal Server Error');
@@ -289,7 +303,7 @@ module.exports = {
 
 check:(req, res) => {
     let data = {
-        "data": "Your name is kannada",
+        "data": "Your name is ANFA",
         "color":"rgb(98, 77, 77)"
       };
     res.json(data);
