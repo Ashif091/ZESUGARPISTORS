@@ -34,6 +34,7 @@ const {logout,
     createProductDisplay,
     productmangement,
     check,
+    deleteData,
 }=require("../controllers/adminController")
 router.route("/logout").get(logout)
 router.route("/").get( adminAuthenticate,adlogin).post(admincheck)
@@ -51,9 +52,12 @@ router.route("/usermanagement/:userId").post(userstatus).put(updateuser).delete(
 //_____________________product Management__________________
 
 router.route('/productmangement').get(productmangement).post(upload.array('image', 4),createProduct )
+router.route('/deleteProduct/:id').delete(deleteData)
 
 // ______________check__________________
 router.route("/check").get(check)
+
+
 
 
  
