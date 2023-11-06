@@ -307,7 +307,7 @@ module.exports = {
 
     check: (req, res) => {
         let data = {
-            "data": "Your name is kannada",
+            "data": "Your name is RAKESH",
             "color": "rgb(98, 77, 77)"
         };
         res.json(data);

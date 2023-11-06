@@ -88,6 +88,8 @@
 
       <button id="createnew" type="button" data-bs-toggle="modal" data-bs-target="#createproduct">new</button>
 
+
+
       <div class="box">
         <%let count=1%>
 
@@ -104,9 +106,10 @@
           </div>
 
           <div class="item imgtext ">
-            <div class="imgdiv_product">
+            <div class="imgdiv_product" onclick="showModal(this)"  data-product="<%=product.product_name%>"  data-product-images='<%= JSON.stringify(product.product_image_url) %>'>
               <img src="/<%=product.product_image_url[0]%>" alt="!">
             </div>
+
             <div class="discription">
 
               <p><strong>
@@ -155,6 +158,126 @@
 
 
   </div>
+
+  <script>
+    function showModal(element) {
+      var productImages = JSON.parse(element.getAttribute('data-product-images'));
+      var productname = element.getAttribute('data-product');
+      var modal = document.getElementById('imageModal');
+      var modalBody = modal.querySelector('.modal-body');
+      modalBody.innerHTML = ''; // Clear the modal body
+       document.getElementById("img_edit_product").innerHTML=productname
+      // Create a container div for the images
+      var container = document.createElement('div');
+      container.style.display = 'flex';
+      container.style.flexDirection = 'row';
+      container.style.justifyContent = 'space-between';
+      container.style.width = '100%';
+
+      var idCount = 0; // Counter for unique id
+
+      productImages.forEach(function(imageUrl) {
+        var div = document.createElement('div'); // Create a new div for each image
+        div.id = 'imageDiv' + idCount; // Set a unique id for each div
+        // div.onclick = function() { document.getElementById('fileInput' + idCount).click(); }; // Set onclick event
+
+
+
+        var img = document.createElement('img');
+        img.src = `/${imageUrl}`;
+        img.style.width = '60px';
+        div.appendChild(img); // Append the image to the div
+
+        var input = document.createElement('input');
+        input.type = 'file';
+        input.id = 'fileInput' + idCount; // Set a unique id for each input
+        input.style.display = 'none';
+        input.onchange = function() {
+          previewImage(this);
+        }; // Set onchange event
+        div.appendChild(input); // Append the input to the div
+
+        container.appendChild(div); // Append the div to the container
+
+        idCount++; // Increment the counter
+      });
+
+      modalBody.appendChild(container); // Append the container to the modal body
+      $(modal).modal('show'); // Show the modal
+
+
+
+      //give file input for all div
+      for (let i = 0; i < productImages.length; i++) {
+        document.getElementById('imageDiv' + i).onclick = function() {
+          var inputElement = document.getElementById('fileInput' + i);
+          if (inputElement) {
+            inputElement.click();
+          } else {
+            console.error('Element with id fileInput' + i + ' does not exist');
+          }
+        };
+      }
+    }
+    //================
+
+
+    function previewImage(input) {
+      console.log('previewImage function called with input:', input);
+
+      if (input.files && input.files[0]) {
+
+        var reader = new FileReader();
+        let id = input.id.replace('fileInput', 'imageDiv');
+        reader.onload = function(e) {
+          console.log('File read as:', e.target.result);
+
+          let image = document.getElementById(`${id}`)
+          let img = image.querySelector('img'); // Select the img element inside the div
+
+          if (img) {
+            img.src = e.target.result; // Set the src of the img to the selected file
+          } else {
+            console.log("Image element does not exist");
+          }
+        }
+
+        reader.readAsDataURL(input.files[0]);
+      } else {
+        console.log('No file selected');
+      }
+    }
+  </script>
+
+
+  <!-- img medit model  -->
+
+
+  <div class="modal fade modelstyle"  id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog  ">
+      <div class="modal-content inner">
+        <div class="modal-header modeltext">
+          <h1 class="modal-title fs-5" >Edit_img_ <span id="img_edit_product">img</span>_product
+          </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        
+        <div class="modal-body modeltext">
+          
+          <span style="color: red;">Warning</span>: This data is Edited permanently from the database.
+        </div>
+        <div class="modal-body">
+          <!-- Images will be inserted here -->
+        </div>
+        <div class="modal-footer modeltext">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger " id="Edit_img_model" data-bs-dismiss="modal" value="">SAVE</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- end  -->
 
   <!-- Modal FOR creating new User -->
   <div class="modal fade" id="createproduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">

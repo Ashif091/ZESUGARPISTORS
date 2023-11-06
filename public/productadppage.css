@@ -129,7 +129,14 @@ body {
     height: 20px;
 }
 
-/*  */
+/* 
+
+*/
+
+#clsbtn{
+    background-color: transparent;
+    border: none;
+}
 
 .scrollable-content {
     position: relative;

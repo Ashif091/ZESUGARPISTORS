@@ -55,7 +55,7 @@ router.route('/productmangement').get(productmangement).post(upload.array('image
 router.route('/deleteProduct/:id').delete(deleteData)
 
 // ______________check__________________
-router.route("/check").get(check)
+router.route("/check").post(check)
 
 
 
