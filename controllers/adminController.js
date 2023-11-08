@@ -1,5 +1,6 @@
 const users = require("../models/userModel")
 const product = require("../models/productSchema")
+const category = require("../models/category")
 const asyncHandler = require("express-async-handler")
 const fs = require('fs');
 const path = require('path');
@@ -441,8 +442,88 @@ module.exports = {
     }
 }
 ,
+categoryGET:async (req, res) => {
+    try {
+        
+        const categorylist = await category.find({})
+        console.log(categorylist);
+
+       return res.render("category_admin_management", { categorylist })
+    } catch (error) {
+        console.error(error); // Log the error for debugging
+        res.status(500).send("Internal Server Error: " + error.message);
+    }
+    
 
 
+
+},
+
+categoryPOST: async (req, res) => {
+    console.log("enter prodecut creation ",req.body);
+    const {
+        productname,
+        description,
+        quantity,
+    } = req.body;
+    console.log("/data is ", req.body);
+    try {
+        if (!req.files || req.files.length === 0) {
+            return res.status(400).send('No file uploaded.');
+         }
+         
+         let imagePath = req.files[0].path;
+         if (imagePath.includes('public\\')) {
+            imagePath = imagePath.replace('public\\', '');
+         } else if (imagePath.includes('public/')) {
+            imagePath = imagePath.replace('public/', '');
+         }
+
+
+
+        const productdata = await product.create({
+            product_name: productname,
+            product_description: description,
+            product_qty: quantity,
+            product_image_url: imagePath,
+
+        })
+
+        if (productdata) {
+            console.log("data will be saved in db", productdata);
+        }
+        const productlist = await product.findOne({ product_name: productname })
+
+
+        let data = {
+            "data": {
+                productname,
+                description,
+                quantity,
+                imagePaths,
+                _id: productlist._id
+
+
+            },
+
+        };
+        res.json(data);
+    } catch (error) {
+        console.error('Error creating user:', error);
+        res.status(500).send('Internal Server Error');
+    }
+},
+
+
+
+
+
+
+
+
+
+
+//====================EDNING OF EXPORT==================
 }
 
 
