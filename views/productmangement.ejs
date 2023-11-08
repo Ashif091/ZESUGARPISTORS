@@ -25,42 +25,7 @@
 
 <body>
   <div class="container_main ">
-    <div class="sidebar">
-      <!-- Your sidebar content goes here -->
-      <div class="profile_bar">
-        <form class="circle" action="/logout" method="get">
-          <img src="/image2/admin.png" alt="Profile Image">
-          <p class="admintag">admin </p>
-          <button id="logoutbtn" type="submit"><img width="20px" src="/image2/logout.png" alt="logout"></button>
-        </form>
-      </div>
-      <a href="/admin/usermanagement"><button class="button" style=" background-color: rgb(98, 77, 77);">Dashboard</button></a>
-
-      <button id="toggleButton" class="button" style=" background-color: rgb(98, 77, 77); ">User
-        Management</button>
-      <div class="usermanagementdiv" style="display: none;" id="usermanagementdiv">
-
-        <form action="/admin" method="get" class="button-container">
-
-          <button type="submit" class="button">All Users</button>
-
-        </form>
-        <a href="/admin/usermanagementblock/:userId"><button class="button">blocked users</button></a>
-
-        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="button">Create new
-          user</button>
-      </div>
-      <a href="/admin/usermanagement"><button class="button" style=" background-color: rgb(50, 23, 23);">Product
-          Mangement</button></a>
-      <a href="/admin/usermanagement"><button class="button" style=" background-color: rgb(98, 77, 77);">Order
-          Mangement</button></a>
-      <a href="/admin/usermanagement"><button class="button" style=" background-color: rgb(98, 77, 77);">Category</button></a>
-      <a href="/admin/usermanagement"><button class="button" style=" background-color: rgb(98, 77, 77);">Coupons</button></a>
-
-
-
-    </div>
-
+    <%-include("./partials/left_bar_admin")  %>
     <form class="search-bar" action="/admin/usermanagement/search" method="get">
       <h1>Product Mangement</h1>
 
@@ -195,6 +160,10 @@
         input.onchange = function() {
           previewImage(this);
         }; // Set onchange event
+        input.setAttribute('multiple', '');
+        input.setAttribute('accept', 'image/*');
+ 
+
         div.appendChild(input); // Append the input to the div
 
         container.appendChild(div); // Append the div to the container
@@ -266,16 +235,27 @@
           
           <span style="color: red;">Warning</span>: This data is Edited permanently from the database.
         </div>
+        <form action="/admin/productmangement" method="post" id="signupForm" enctype="multipart/form-data">
         <div class="modal-body">
+
           <!-- Images will be inserted here -->
         </div>
         <div class="modal-footer modeltext">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="button" class="btn btn-danger " id="Edit_img_model" data-bs-dismiss="modal" value="">SAVE</button>
         </div>
+      </form>
       </div>
     </div>
   </div>
+
+  <script>
+   let Edit_img_model = document.getElementById("Edit_img_model")
+   Edit_img_model.addEventListener("click",()=>{
+
+   })
+
+  </script>
 
   <!-- end  -->
 
