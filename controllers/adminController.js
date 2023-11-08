@@ -103,7 +103,7 @@ module.exports = {
 
 
     createProduct: async (req, res) => {
-        console.log("enter prodecut creation ");
+        console.log("enter prodecut creation ",req.body);
         const {
             productname,
             description,
@@ -111,7 +111,7 @@ module.exports = {
             quantity,
             category,
         } = req.body;
-        console.log("/xxxxxxxxxxxxxxxxxxx ", req.body);
+        console.log("/xxx", req.body);
         try {
             if (!req.files || req.files.length === 0) {
                 return res.status(400).send('No files uploaded.');
@@ -305,12 +305,54 @@ module.exports = {
 
     ,
 
-    check: (req, res) => {
-        let data = {
-            "data": "Your name is RAKESH",
-            "color": "rgb(98, 77, 77)"
-        };
-        res.json(data);
+    check: async (req, res) => {
+        try {
+            console.log(req.files);
+            if (!req.files || req.files.length === 0) {
+                return res.status(400).send('No files uploaded.');
+            }
+
+            const imagePaths = req.files.map(file => {
+                let imagePath = file.path;
+                if (imagePath.includes('public\\')) {
+                    imagePath = imagePath.replace('public\\', '');
+                } else if (imagePath.includes('public/')) {
+                    imagePath = imagePath.replace('public/', '');
+                }
+                return imagePath;
+            });
+
+
+
+
+            const productdata = await product.findByIdAndUpdate(
+                userId,
+                updatedData,
+                { new: true });
+
+            if (productdata) {
+                console.log("data will be saved in db", productdata);
+            }
+            const productlist = await product.findOne({ product_name: productname })
+
+
+            let data = {
+                "data": {
+                    productname,
+                    description,
+                    quantity,
+                    imagePaths,
+                    _id: productlist._id
+
+
+                },
+
+            };
+            res.json(data);
+        } catch (error) {
+            console.error('Error creating user:', error);
+            res.status(500).send('Internal Server Error');
+        }
     }
 
 
@@ -353,7 +395,52 @@ module.exports = {
         }
     }
 
+  ,
+  editProduct: async (req, res) => {
+    console.log("product  is start to edit ",req.body);
+    const {
+        productname,
+        description,
+        productprice,
+        quantity,
+        category,
+        productid,
+    } = req.body;
 
+    try {
+
+
+
+        const productdata = {
+            product_name: productname,
+            product_description: description,
+            product_price: productprice,
+            product_category: category,
+            product_qty: quantity,
+
+        }
+
+         let data_status = await product.findByIdAndUpdate(
+            productid,
+            productdata,
+            { new: true });
+
+        if (productdata) {
+            console.log("data will be saved in db", productdata);
+        }
+
+
+        let data = {
+          "status":true
+
+        };
+        res.json(data);
+    } catch (error) {
+        console.error('Error creating user:', error);
+        res.status(500).send('Internal Server Error');
+    }
+}
+,
 
 
 }

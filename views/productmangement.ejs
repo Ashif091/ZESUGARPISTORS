@@ -71,7 +71,7 @@
           </div>
 
           <div class="item imgtext ">
-            <div class="imgdiv_product" onclick="showModal(this)"  data-product="<%=product.product_name%>"  data-product-images='<%= JSON.stringify(product.product_image_url) %>'>
+            <div class="imgdiv_product" onclick="showModal(this)" data-product="<%=product.product_name%>" data-product-images='<%= JSON.stringify(product.product_image_url) %>'>
               <img src="/<%=product.product_image_url[0]%>" alt="!">
             </div>
 
@@ -107,7 +107,12 @@
             <!--  -->
 
 
-            <BUtton class='edit_btn'>EDIT</BUtton>
+            <button class='edit_btn' data-id="<%= product._id %>" data-product="<%=product.product_name%>"
+              data-product_description="<%=product.product_description%>"
+              data-product_price="<%=product.product_price%>"
+              data-product_category="<%=product.product_category%>" data-product_qty="<%=product.product_qty%>"
+              id="editModal_btn" type="button" data-bs-toggle="modal" data-bs-target="#editModal"
+              data-bs-whatever="@mdo ">EDIT</button>
           </div>
         </div>
         <% count++ %>
@@ -129,9 +134,9 @@
       var productImages = JSON.parse(element.getAttribute('data-product-images'));
       var productname = element.getAttribute('data-product');
       var modal = document.getElementById('imageModal');
-      var modalBody = modal.querySelector('.modal-body');
+      var modalBody = modal.querySelector('.modal_img_div');
       modalBody.innerHTML = ''; // Clear the modal body
-       document.getElementById("img_edit_product").innerHTML=productname
+      document.getElementById("img_edit_product").innerHTML = productname
       // Create a container div for the images
       var container = document.createElement('div');
       container.style.display = 'flex';
@@ -160,9 +165,9 @@
         input.onchange = function() {
           previewImage(this);
         }; // Set onchange event
-        input.setAttribute('multiple', '');
-        input.setAttribute('accept', 'image/*');
- 
+        // input.setAttribute('multiple', '');
+        // input.setAttribute('accept', 'image/*');
+
 
         div.appendChild(input); // Append the input to the div
 
@@ -222,39 +227,57 @@
   <!-- img medit model  -->
 
 
-  <div class="modal fade modelstyle"  id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+  <div class="modal fade modelstyle" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
     <div class="modal-dialog  ">
       <div class="modal-content inner">
         <div class="modal-header modeltext">
-          <h1 class="modal-title fs-5" >Edit_img_ <span id="img_edit_product">img</span>_product
+          <h1 class="modal-title fs-5">Edit_img_ <span id="img_edit_product">img</span>_product
           </h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        
+
         <div class="modal-body modeltext">
-          
+
           <span style="color: red;">Warning</span>: This data is Edited permanently from the database.
         </div>
         <form action="/admin/productmangement" method="post" id="signupForm" enctype="multipart/form-data">
-        <div class="modal-body">
+          <div class="modal_img_div">
 
-          <!-- Images will be inserted here -->
-        </div>
-        <div class="modal-footer modeltext">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-danger " id="Edit_img_model" data-bs-dismiss="modal" value="">SAVE</button>
-        </div>
-      </form>
+            <!-- Images will be inserted here -->
+          </div>
+          <div class="modal-footer modeltext">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-danger " id="Edit_img_model" data-bs-dismiss="modal" value="">SAVE</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 
   <script>
-   let Edit_img_model = document.getElementById("Edit_img_model")
-   Edit_img_model.addEventListener("click",()=>{
-
-   })
-
+    document.getElementById('Edit_img_model').addEventListener('click', function() {
+      var formData = new FormData();
+      // Get all file inputs
+      var fileInputs = document.querySelectorAll(".modal_img_div input[type='file']");
+      console.log(fileInputs.files);
+      fileInputs.forEach(function(fileInput) {
+        for (var i = 0; i < fileInput.files.length; i++) {
+          formData.append('image', fileInput.files[i]);
+        }
+      });
+      // Array.from(productimg.files).forEach((file, i) => {
+      //   data.append(`image`, file);
+      // });
+      console.log(formData);
+      // Send the form data to the server
+      fetch('/admin/img_edit', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error));
+    });
   </script>
 
   <!-- end  -->
@@ -287,10 +310,10 @@
               <!--  -->
               <div class="form-floating mb-3">
 
-                <select id="category" name="category" required>
+                <select id="category_create" name="category" required>
                   <option value="browny">browny</option>
-                  <option value="browny">cake</option>
-                  <option value="browny">happ</option>
+                  <option value="cake">cake</option>
+                  <option value="happ">happ</option>
                 </select>
               </div>
               <!--  -->
@@ -342,6 +365,142 @@
 
   <!-- end model -->
 
+  <!-- edit data on product -->
+  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered modelstyle ">
+      <div class="modal-content inner">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="/admin/productmangement" method="post" id="signupForm" >
+          <div class="modal-body">
+            <div class="container-fluid">
+              <!--  -->
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="productname_update" placeholder="name" name="productname">
+                <label for="newUsername">productname</label>
+              </div>
+              <!--  -->
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="description_update" placeholder="name" name="description">
+                <label for="newUsername">Description</label>
+              </div>
+              <!--  -->
+              <div class="form-floating mb-3">
+
+                <select id="category_update" name="category" required>
+                  <option value="browny">browny</option>
+                  <option value="cake">cake</option>
+                  <option value="happ">happ</option>
+                </select>
+              </div>
+              <!--  -->
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="productprice_update" placeholder="productprice" name="productprice">
+                <label for="newUsername">Price (USD)</label>
+              </div>
+              <!--  -->
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="quantity_update" placeholder="productprice" name="quantity">
+              <label for="newUsername">Quantity</label>
+              </div>
+              <!--  -->
+              <input type="text" class="form-control" hidden  id="productid_update"  name="productid">
+
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" id="submit_edit">Save changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+ <script>
+  const submit_edit = document.getElementById("submit_edit")
+
+  submit_edit.addEventListener("click", (event) => {
+  event.preventDefault();
+  var productid = document.getElementById("productid_update")
+  var quantity = document.getElementById("quantity_update")
+  var productprice = document.getElementById("productprice_update")
+  var description = document.getElementById("description_update")
+  var productname = document.getElementById("productname_update")
+  var category = document.getElementById("category_update")
+  
+
+
+  // Create a new FormData object
+  var data = {
+    quantity:quantity.value,
+    productprice:productprice.value,
+    description:description.value,
+    productname:productname.value,
+    productid:productid.value,
+    category:category.value
+  }
+
+
+
+  console.log(data);
+
+  fetch(`/admin/productmangement/edit`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data => {
+      window.location.href = "/admin/productmangement"
+
+    })
+    .catch(error => alert("error"));
+})
+
+let editmodel = document.getElementById('editModal');
+    editmodel.addEventListener('show.bs.modal', function (event) {
+      // Button that triggered the modal
+      let button = event.relatedTarget;
+      let productid = button.getAttribute('data-id');
+      let productName = button.getAttribute('data-product');
+      let product_qty = button.getAttribute('data-product_qty');
+      let product_category = button.getAttribute('data-product_category');
+      let product_price = button.getAttribute('data-product_price');
+      let product_description = button.getAttribute('data-product_description');
+       
+
+
+
+      let Uid = editmodel.querySelector('#productid_update');
+      Uid.value = productid;
+
+      let productname_update = editmodel.querySelector('#productname_update');
+      productname_update.value = productName;
+
+      let description_update = editmodel.querySelector('#description_update');
+      description_update.value = product_description;
+
+      let productprice_update = editmodel.querySelector('#productprice_update');
+      productprice_update.value = product_price;
+
+      let quantity_update = editmodel.querySelector('#quantity_update');
+      quantity_update.value = product_qty;
+
+      let category_update = editmodel.querySelector('#category_update');
+      category_update.option = product_category;
+    })
+ </script>
+  <!--  -->
+
+
+
+
+
+
+
+
 
   <script>
     document.getElementById('toggleButton').addEventListener('click', function() {
@@ -366,7 +525,7 @@
       var description = document.getElementById("description")
       var productimg = document.getElementById("productimg")
       var productname = document.getElementById("productname")
-      var innerextbox = document.getElementById("innerextbox")
+      var category= document.getElementById("category_create")
 
       var x = document.getElementById('checkdiv');
 
@@ -378,6 +537,7 @@
       data.append('productprice', productprice.value);
       data.append('description', description.value);
       data.append('productname', productname.value);
+      data.append('category', category.value);
 
 
       Array.from(productimg.files).forEach((file, i) => {
