@@ -45,7 +45,8 @@
       <div class="labelbar row">
         <p class="lebel col-6">products</p>
         <p class="lebel col-2">product Id</p>
-        <p class="lebel col-2">Quantity</p>
+        <p class="lebel col-2">qty
+        </p>
         <p class="lebel col-2"></p>
       </div>
       <div class="underline"></div> <!-- Add this line for the underline -->
@@ -62,7 +63,7 @@
 
 
 
-        <div class="inner-box pid_hide">
+        <div class="inner-box pid_hide" data-status="<%=product.product_status%>">
           <div class="brownline"></div>
           <div class="item">
             <p style="margin-top: 50%;">
@@ -98,21 +99,26 @@
 
 
           </div>
-          <div class="item">
+          <div class="item ">
             <!-- delete tuggle btn -->
-            <button data-id="<%= product._id %>" data-product="<%=product.product_name%>" id="clsbtn" type="button" class="btn_icon" data-bs-toggle="modal" data-bs-target="#deleteModal" data-bs-whatever="@mdo ">
+            <button data-id="<%= product._id %>" data-product="<%=product.product_name%>" id="clsbtn" type="button" class="btn_icon " data-bs-toggle="modal" data-bs-target="#deleteModal" data-bs-whatever="@mdo ">
               <img src="/image2/delete.png" width="23px" alt="">
             </button>
 
             <!--  -->
 
+            <button data-id="<%= product._id %>" data-product="<%=product.product_name%>" data-status="<%=product.product_status%>" id="list_btn" type="button" class="btn_icon ">
 
-            <button class='edit_btn' data-id="<%= product._id %>" data-product="<%=product.product_name%>"
-              data-product_description="<%=product.product_description%>"
-              data-product_price="<%=product.product_price%>"
-              data-product_category="<%=product.product_category%>" data-product_qty="<%=product.product_qty%>"
-              id="editModal_btn" type="button" data-bs-toggle="modal" data-bs-target="#editModal"
-              data-bs-whatever="@mdo ">EDIT</button>
+              <%if(product.product_status===true){%>
+              list
+              <%}else{%>
+              unlist
+              <% } %>
+
+            </button>
+
+
+            <button class='edit_btn ' data-id="<%= product._id %>" data-product="<%=product.product_name%>" data-product_description="<%=product.product_description%>" data-product_price="<%=product.product_price%>" data-product_category="<%=product.product_category%>" data-product_qty="<%=product.product_qty%>" id="editModal_btn" type="button" data-bs-toggle="modal" data-bs-target="#editModal" data-bs-whatever="@mdo ">EDIT</button>
           </div>
         </div>
         <% count++ %>
@@ -128,6 +134,65 @@
 
 
   </div>
+
+  <script>
+    //script for list btn
+    let list_btns = document.querySelectorAll("#list_btn");
+    list_btns.forEach(function(list_btn) {
+      list_btn.addEventListener("click", function(event) {
+        let button = event.target;
+        let id = button.getAttribute("data-id");
+        let current_status = button.getAttribute("data-status")
+        let data = {
+          id,
+          current_status,
+        }
+        console.log(data);
+        const url = '/admin/productstatus';
+        // The status request
+        fetch(url, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data),
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.st === true) {
+              button.innerHTML = data.msg;
+              button.setAttribute("data-status", `${data.current_st}`);
+              if (data.current_st === false) {
+                button.closest('.inner-box').style.backgroundColor = "rgba(240, 62, 62, 0.681)";
+                button.closest('.inner-box').style.border = "1px solid rgb(61, 2, 2)";
+                button.closest('.inner-box').style.boxShadow = "5px 4px 10px red";
+              } else {
+                button.closest('.inner-box').style.backgroundColor = "rgb(151, 126, 126";
+                button.closest('.inner-box').style.border = "1px solid rgb(68, 30, 30)";
+                button.closest('.inner-box').style.boxShadow = "5px 5px 10px black";
+              }
+
+
+            } else {
+              window.location.href = "/admin/productmangement"
+            }
+          })
+          .catch((error) => console.error('Error:', error));
+      });
+    });
+
+    //backgrundcolor  of inner-box (render) ==========================
+    let inner_box = document.querySelectorAll(".inner-box");
+    inner_box.forEach(function(x) {
+      let status = x.getAttribute("data-status")
+      if (status === 'false') {
+        x.style.backgroundColor = "rgba(240, 62, 62, 0.681)";
+        x.style.border = "1px solid rgb(61, 2, 2)";
+        x.style.boxShadow = "5px 4px 10px red";
+      }
+    });
+  </script>
+
 
   <script>
     function showModal(element) {
@@ -308,13 +373,14 @@
                 <label for="newUsername">Description</label>
               </div>
               <!--  -->
-              <div class="form-floating mb-3">
-
-                <select id="category_create" name="category" required>
-                  <option value="browny">browny</option>
-                  <option value="cake">cake</option>
-                  <option value="happ">happ</option>
+              <div class="form-floating mb-3 row">
+                <p class="col-3">category</p>
+                <select class="col-6" id="category_create" name="category" required>
+                  <% result.forEach(function(item) { %>
+                  <option><%= item._id %></option>
+                  <% }); %>
                 </select>
+
               </div>
               <!--  -->
               <div class="form-floating mb-3">
@@ -373,7 +439,7 @@
           <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form action="/admin/productmangement" method="post" id="signupForm" >
+        <form action="/admin/productmangement" method="post" id="signupForm">
           <div class="modal-body">
             <div class="container-fluid">
               <!--  -->
@@ -387,13 +453,14 @@
                 <label for="newUsername">Description</label>
               </div>
               <!--  -->
-              <div class="form-floating mb-3">
-
-                <select id="category_update" name="category" required>
-                  <option value="browny">browny</option>
-                  <option value="cake">cake</option>
-                  <option value="happ">happ</option>
+              <div class="form-floating mb-3 row">
+                <p class="col-3">category</p>
+                <select class="col-6" id="category_update" name="category" required>
+                  <% result.forEach(function(item) { %>
+                  <option><%= item._id %></option>
+                  <% }); %>
                 </select>
+
               </div>
               <!--  -->
               <div class="form-floating mb-3">
@@ -403,10 +470,10 @@
               <!--  -->
               <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="quantity_update" placeholder="productprice" name="quantity">
-              <label for="newUsername">Quantity</label>
+                <label for="newUsername">Quantity</label>
               </div>
               <!--  -->
-              <input type="text" class="form-control" hidden  id="productid_update"  name="productid">
+              <input type="text" class="form-control" hidden id="productid_update" name="productid">
 
             </div>
           </div>
@@ -418,49 +485,51 @@
       </div>
     </div>
   </div>
- <script>
-  const submit_edit = document.getElementById("submit_edit")
+  <script>
+    const submit_edit = document.getElementById("submit_edit")
 
-  submit_edit.addEventListener("click", (event) => {
-  event.preventDefault();
-  var productid = document.getElementById("productid_update")
-  var quantity = document.getElementById("quantity_update")
-  var productprice = document.getElementById("productprice_update")
-  var description = document.getElementById("description_update")
-  var productname = document.getElementById("productname_update")
-  var category = document.getElementById("category_update")
-  
-
-
-  // Create a new FormData object
-  var data = {
-    quantity:quantity.value,
-    productprice:productprice.value,
-    description:description.value,
-    productname:productname.value,
-    productid:productid.value,
-    category:category.value
-  }
+    submit_edit.addEventListener("click", (event) => {
+      event.preventDefault();
+      var productid = document.getElementById("productid_update")
+      var quantity = document.getElementById("quantity_update")
+      var productprice = document.getElementById("productprice_update")
+      var description = document.getElementById("description_update")
+      var productname = document.getElementById("productname_update")
+      var category = document.getElementById("category_update")
 
 
 
-  console.log(data);
+      // Create a new FormData object
+      var data = {
+        quantity: quantity.value,
+        productprice: productprice.value,
+        description: description.value,
+        productname: productname.value,
+        productid: productid.value,
+        category: category.value
+      }
 
-  fetch(`/admin/productmangement/edit`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(data),
+
+
+      console.log(data);
+
+      fetch(`/admin/productmangement/edit`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .then(data => {
+          window.location.href = "/admin/productmangement"
+
+        })
+        .catch(error => alert("error"));
     })
-    .then(response => response.json())
-    .then(data => {
-      window.location.href = "/admin/productmangement"
 
-    })
-    .catch(error => alert("error"));
-})
-
-let editmodel = document.getElementById('editModal');
-    editmodel.addEventListener('show.bs.modal', function (event) {
+    let editmodel = document.getElementById('editModal');
+    editmodel.addEventListener('show.bs.modal', function(event) {
       // Button that triggered the modal
       let button = event.relatedTarget;
       let productid = button.getAttribute('data-id');
@@ -469,12 +538,13 @@ let editmodel = document.getElementById('editModal');
       let product_category = button.getAttribute('data-product_category');
       let product_price = button.getAttribute('data-product_price');
       let product_description = button.getAttribute('data-product_description');
-       
+
 
 
 
       let Uid = editmodel.querySelector('#productid_update');
       Uid.value = productid;
+
 
       let productname_update = editmodel.querySelector('#productname_update');
       productname_update.value = productName;
@@ -489,14 +559,10 @@ let editmodel = document.getElementById('editModal');
       quantity_update.value = product_qty;
 
       let category_update = editmodel.querySelector('#category_update');
-      category_update.option = product_category;
+      category_update.value = product_category;
     })
- </script>
+  </script>
   <!--  -->
-
-
-
-
 
 
 
@@ -525,7 +591,7 @@ let editmodel = document.getElementById('editModal');
       var description = document.getElementById("description")
       var productimg = document.getElementById("productimg")
       var productname = document.getElementById("productname")
-      var category= document.getElementById("category_create")
+      var category = document.getElementById("category_create")
 
       var x = document.getElementById('checkdiv');
 
@@ -604,7 +670,6 @@ let editmodel = document.getElementById('editModal');
       nameproductElement.textContent = productName;
     });
   </script>
-
 
 
 </body>

@@ -54,7 +54,7 @@
                 <div class="underline"></div> <!-- Add this line for the underline -->
 
 
-                <button id="createnew" type="button" data-bs-toggle="modal" data-bs-target="#createproduct">new</button>
+                <button id="createnew" type="button" data-bs-toggle="modal" data-bs-target="#createcategory">new</button>
 
 
 
@@ -63,8 +63,7 @@
 
                         <% categorylist.forEach(category=> { %>
 
-
-
+                                 
                             <div class="inner-box pid_hide">
                                 <div class="brownline"></div>
                                 <div class="item">
@@ -75,11 +74,15 @@
 
                                 <div class="item imgtext ">
                                     <!-- he we img div is is in text -->
+                                    <div class="imgdiv_product" >
+                                        <img src="/<%=category.category_image_url%>" alt="!">
+                                  
+                                      </div>
 
                                     <div class="discription">
 
                                         <p><strong>
-                                                <%=category.category_name%>
+                                                <%=category.category_name%>      
                                             </strong><br><span style="font-size: 13px;">
                                                 <%=category.category_description%>
                                             </span></p>
@@ -100,28 +103,133 @@
 
                                 <div class="item">
                                     <!-- delete tuggle btn -->
-                                    <button data-id="<%= category._id %>" data-category="<%=category.category_name%>"
-                                        id="clsbtn" type="button" class="btn_icon" data-bs-toggle="modal"
-                                        data-bs-target="#deleteModal" data-bs-whatever="@mdo ">
-                                        <img src="/image2/delete.png" width="23px" alt="">
-                                    </button>
 
+                                    <button class='edit_btn' data-id="<%= category._id %>"
+                                        data-category="<%=category.category_name%>"
+                                        data-category_description="<%=category.category_description%>"
+                                        data-category_qty="<%=category.category_qty%>"
+                                        id="editModal_btn" type="button" data-bs-toggle="modal" data-bs-target="#editModal"
+                                        data-bs-whatever="@mdo ">EDIT</button>
                                     <!--  -->
 
 
 
                                 </div>
-                                <% count++ %>
-                                    <%})%>
+
 
 
                             </div>
+                            <% count++ %>
+                            <%})%>
                 </div>
 
             </div>
 
 
     </div>
+
+
+    <!-- catagory edit model  -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered modelstyle ">
+          <div class="modal-content inner">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Category</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/admin/categorymangement" method="post" id="signupForm" >
+              <div class="modal-body">
+                <div class="container-fluid">
+                  <!--  -->
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="categoryname_update" placeholder="name" name="categoryname">
+                    <label for="newUsername">categoryname</label>
+                  </div>
+                  <!--  -->
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="description_update" placeholder="name" name="description">
+                    <label for="newUsername">Description</label>
+                  </div>
+                  <!--  -->
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="quantity_update" placeholder="categoryprice" name="quantity">
+                  <label for="newUsername">Quantity</label>
+                  </div>
+                  <!--  -->
+                  <input type="text" class="form-control" hidden  id="categoryid_update"  name="categoryid">
+    
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" id="submit_edit">Save changes</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    <!-- end of edit model  -->
+
+    <!-- edit model script -->
+    <script>
+        const submit_edit = document.getElementById("submit_edit")
+      
+        submit_edit.addEventListener("click", (event) => {
+        event.preventDefault();
+        var categoryid = document.getElementById("categoryid_update")
+        var quantity = document.getElementById("quantity_update")
+        var description = document.getElementById("description_update")
+        var categoryname = document.getElementById("categoryname_update")
+        
+      
+      
+        // Create a new FormData object
+        var data = {
+          quantity:quantity.value,
+          description:description.value,
+          categoryname:categoryname.value,
+          categoryid:categoryid.value,
+        }
+      
+      
+      
+        console.log(data);
+      
+        fetch(`/admin/categorymanagement/edit`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data),
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+            window.location.href = "/admin/categorymanagement"
+      
+          })
+          .catch(error => alert("error"));
+      })
+      
+      let editmodel = document.getElementById('editModal');
+          editmodel.addEventListener('show.bs.modal', function (event) {
+            // Button that triggered the modal
+            let button = event.relatedTarget;
+            let categoryid = button.getAttribute('data-id');
+            let categoryName = button.getAttribute('data-category');
+            let category_qty = button.getAttribute('data-category_qty');
+            let category_description = button.getAttribute('data-category_description');
+            
+            let Uid = editmodel.querySelector('#categoryid_update');
+            Uid.value = categoryid;
+            let categoryname_update = editmodel.querySelector('#categoryname_update');
+            categoryname_update.value = categoryName;
+            let description_update = editmodel.querySelector('#description_update');
+            description_update.value = category_description;
+            let quantity_update = editmodel.querySelector('#quantity_update');
+            quantity_update.value = category_qty;
+
+          })
+       </script>
+    <!-- script end -->
 
     <!-- category create modal -->
     <div class="modal fade" id="createcategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
@@ -154,7 +262,7 @@
                             </div>
                             <!--  -->
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="quantity" placeholder="productprice"
+                                <input type="text" class="form-control" id="quantity" placeholder="categoryprice"
                                     name="quantity">
                                 <label for="newUsername">Quantity</label>
                             </div>
@@ -174,44 +282,9 @@
     <!-- modal end  -->
 
 
-    <script>
-        const submitbtn = document.getElementById("submit")
-
-        submitbtn.addEventListener("click", (event) => {
-            event.preventDefault();
-
-            var quantity = document.getElementById("quantity")
-            var description = document.getElementById("description")
-            var categoryimg = document.getElementById("categoryimg")
-            var categoryname = document.getElementById("categoryname")
 
 
 
-            // Create a new FormData object
-            var data = new FormData();
-
-            // Append the form data
-            data.append('quantity', quantity.value);
-            data.append('description', description.value);
-            data.append('categoryname', categoryname.value);
-
-
-            if (categoryimg.files.length > 0) {
-                data.append('image', categoryimg.files[0]);
-            }
-
-            fetch(`/admin/categorymangement`, {
-                method: 'POST',
-                body: data,
-            })
-                .then(response => response.json())
-                .then(data => {
-                    window.location.href = "/admin/categorymangement"
-
-                })
-                .catch(error => alert("error"));
-        })
-    </script>
 
 
 

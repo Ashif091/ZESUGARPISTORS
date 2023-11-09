@@ -37,6 +37,8 @@ const {logout,
     editProduct,
     categoryGET,
     categoryPOST,
+    editcategory,
+    productstatus,
 }=require("../controllers/adminController")
 router.route("/logout").get(logout)
 router.route("/").get( adminAuthenticate,adlogin).post(admincheck)
@@ -56,6 +58,7 @@ router.route("/usermanagement/:userId").post(userstatus).put(updateuser).delete(
 router.route('/productmangement').get(productmangement).post(upload.array('image', 4),createProduct )
 router.route('/productmangement/edit').get(productmangement).post(editProduct)
 router.route('/deleteProduct/:id').delete(deleteData)
+router.route('/productstatus').post(productstatus)
 router.route('/img_edit').get(productmangement).post(upload.array('image', 4),check )
 
 // ______________check__________________
@@ -63,19 +66,13 @@ router.route("/check").post(check)
 
 
 // _____________________category_admin_management________________________
-const storagedata = multer.diskStorage({
-  destination: function(req, file, cb) {
-    cb(null, 'public/uploads/');
-  },
-  filename: function(req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-    cb(null, uniqueSuffix + '-' + file.originalname);
-  }
- });
- 
- const uploadimg = multer({ storage: storagedata });
 
-router.route("/categorymanagement").get(categoryGET).post(uploadimg.single('file'),categoryPOST)
+const single_upload = multer({ storage: storage }).single('image');
+
+
+router.route("/categorymanagement").get(categoryGET).post(single_upload,categoryPOST)
+router.route('/categorymanagement/edit').get(categoryGET).post(editcategory)
+
 
 
 

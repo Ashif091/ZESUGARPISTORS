@@ -91,8 +91,11 @@ module.exports = {
         try {
 
             const productlist = await product.find()
+            let result = await category.aggregate([{$group: {_id: "$category_name"}}, {$project:{_id: 1}}])
 
-            res.render("productmangement.ejs", { productlist })
+            // let result = data.map(item => );
+            
+            res.render("productmangement.ejs", { productlist ,result})
         } catch (error) {
             res.send("error with data ")
         }
@@ -137,6 +140,7 @@ module.exports = {
                 product_category: category,
                 product_qty: quantity,
                 product_image_url: imagePaths,
+                product_status:true,
 
             })
 
@@ -460,51 +464,74 @@ categoryGET:async (req, res) => {
 },
 
 categoryPOST: async (req, res) => {
-    console.log("enter prodecut creation ",req.body);
+    console.log(`post req (category_managment)`);
     const {
-        productname,
+        categoryname,
         description,
         quantity,
     } = req.body;
-    console.log("/data is ", req.body);
     try {
-        if (!req.files || req.files.length === 0) {
-            return res.status(400).send('No file uploaded.');
-         }
+        
          
-         let imagePath = req.files[0].path;
+         let imagePath = req.file.path
          if (imagePath.includes('public\\')) {
             imagePath = imagePath.replace('public\\', '');
          } else if (imagePath.includes('public/')) {
             imagePath = imagePath.replace('public/', '');
          }
+    
 
 
-
-        const productdata = await product.create({
-            product_name: productname,
-            product_description: description,
-            product_qty: quantity,
-            product_image_url: imagePath,
+        const categorydata = await category.create({
+            category_name: categoryname,
+            category_description: description,
+            category_qty:  parseInt(quantity),
+            category_image_url: imagePath,
 
         })
 
-        if (productdata) {
-            console.log("data will be saved in db", productdata);
+        if (categorydata) {
+            console.log("data will be saved in db");
         }
-        const productlist = await product.findOne({ product_name: productname })
+        res.redirect('back');
+       
+    } catch (error) {
+        console.error('Error creating user:', error);
+        res.status(500).send('Internal Server Error');
+    }
+},
+editcategory: async (req, res) => {
+    console.log("product  is start to edit ",req.body);
+    const {
+        categoryname,
+        description,
+        quantity,
+        categoryid,
+    } = req.body;
+
+    try {
+
+
+
+        const categorydata = {
+            category_name: categoryname,
+            category_description: description,
+            category_qty: quantity,
+
+        }
+
+         let data_status = await category.findByIdAndUpdate(
+            categoryid,
+            categorydata,
+            { new: true });
+
+        if (data_status) {
+            console.log("data will be saved in db", categorydata);
+        }
 
 
         let data = {
-            "data": {
-                productname,
-                description,
-                quantity,
-                imagePaths,
-                _id: productlist._id
-
-
-            },
+          "status":true
 
         };
         res.json(data);
@@ -512,11 +539,40 @@ categoryPOST: async (req, res) => {
         console.error('Error creating user:', error);
         res.status(500).send('Internal Server Error');
     }
-},
+}
 
+,
+productstatus: async function (req, res) {
+    console.log("The status upadation starting... ",req.body);
+    let productId = req.body.id
+    let msg ='error'
+    let current_st ;
+    try {
+        const doc = await product.findById(productId);
+        console.log('data base connecter' );
 
-
-
+        if(req.body.current_status==='true'){
+            doc.set('product_status', false);
+            msg ="unlist"
+            current_st=false;
+        } else {
+            doc.set('product_status', true);
+            msg ="list"
+            current_st=true;
+        }
+        let status = await doc.save();
+ 
+        if (status) {
+            console.log('the code completed');
+            res.json({ st: true ,id:productId,msg,current_st});
+        } else {
+            res.json({ st: false });
+        }
+    } catch (err) {
+        res.status(500).send("server error");
+    }
+ }
+ 
 
 
 

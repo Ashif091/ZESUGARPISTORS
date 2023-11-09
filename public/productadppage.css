@@ -385,3 +385,8 @@ body {
     margin-top: 10px;
     margin-left: 10%;
 }
+
+#list_btn{
+    background-color: transparent;
+    border: none;
+}
