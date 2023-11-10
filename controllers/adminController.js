@@ -91,11 +91,11 @@ module.exports = {
         try {
 
             const productlist = await product.find()
-            let result = await category.aggregate([{$group: {_id: "$category_name"}}, {$project:{_id: 1}}])
+            let result = await category.aggregate([{ $group: { _id: "$category_name" } }, { $project: { _id: 1 } }])
 
             // let result = data.map(item => );
-            
-            res.render("productmangement.ejs", { productlist ,result})
+
+            res.render("productmangement.ejs", { productlist, result })
         } catch (error) {
             res.send("error with data ")
         }
@@ -107,7 +107,7 @@ module.exports = {
 
 
     createProduct: async (req, res) => {
-        console.log("enter prodecut creation ",req.body);
+        console.log("enter prodecut creation ", req.body);
         const {
             productname,
             description,
@@ -140,7 +140,7 @@ module.exports = {
                 product_category: category,
                 product_qty: quantity,
                 product_image_url: imagePaths,
-                product_status:true,
+                product_status: true,
 
             })
 
@@ -387,7 +387,7 @@ module.exports = {
 
             const status = await product.findByIdAndRemove(productId)
             if (status) {
-                res.json({ st: true ,id:productId});
+                res.json({ st: true, id: productId });
 
             }
             else {
@@ -400,186 +400,222 @@ module.exports = {
         }
     }
 
-  ,
-  editProduct: async (req, res) => {
-    console.log("product  is start to edit ",req.body);
-    const {
-        productname,
-        description,
-        productprice,
-        quantity,
-        category,
-        productid,
-    } = req.body;
-
-    try {
-
-
-
-        const productdata = {
-            product_name: productname,
-            product_description: description,
-            product_price: productprice,
-            product_category: category,
-            product_qty: quantity,
-
-        }
-
-         let data_status = await product.findByIdAndUpdate(
+    ,
+    editProduct: async (req, res) => {
+        console.log("product  is start to edit ", req.body);
+        const {
+            productname,
+            description,
+            productprice,
+            quantity,
+            category,
             productid,
-            productdata,
-            { new: true });
+        } = req.body;
 
-        if (productdata) {
-            console.log("data will be saved in db", productdata);
+        try {
+
+
+
+            const productdata = {
+                product_name: productname,
+                product_description: description,
+                product_price: productprice,
+                product_category: category,
+                product_qty: quantity,
+
+            }
+
+            let data_status = await product.findByIdAndUpdate(
+                productid,
+                productdata,
+                { new: true });
+
+            if (productdata) {
+                console.log("data will be saved in db", productdata);
+            }
+
+
+            let data = {
+                "status": true
+
+            };
+            res.json(data);
+        } catch (error) {
+            console.error('Error creating user:', error);
+            res.status(500).send('Internal Server Error');
+        }
+    }
+    ,
+    categoryGET: async (req, res) => {
+        try {
+
+            const categorylist = await category.find({})
+            console.log(categorylist);
+
+            return res.render("category_admin_management", { categorylist })
+        } catch (error) {
+            console.error(error); // Log the error for debugging
+            res.status(500).send("Internal Server Error: " + error.message);
         }
 
 
-        let data = {
-          "status":true
 
-        };
-        res.json(data);
-    } catch (error) {
-        console.error('Error creating user:', error);
-        res.status(500).send('Internal Server Error');
-    }
-}
-,
-categoryGET:async (req, res) => {
-    try {
-        
-        const categorylist = await category.find({})
-        console.log(categorylist);
 
-       return res.render("category_admin_management", { categorylist })
-    } catch (error) {
-        console.error(error); // Log the error for debugging
-        res.status(500).send("Internal Server Error: " + error.message);
-    }
-    
+    },
+
+    categoryPOST: async (req, res) => {
+        console.log(`post req (category_managment)`);
+        const {
+            categoryname,
+            description,
+            quantity,
+        } = req.body;
+        try {
+
+
+            let imagePath = req.file.path
+            if (imagePath.includes('public\\')) {
+                imagePath = imagePath.replace('public\\', '');
+            } else if (imagePath.includes('public/')) {
+                imagePath = imagePath.replace('public/', '');
+            }
 
 
 
-},
+            const categorydata = await category.create({
+                category_name: categoryname,
+                category_description: description,
+                category_qty: parseInt(quantity),
+                category_image_url: imagePath,
 
-categoryPOST: async (req, res) => {
-    console.log(`post req (category_managment)`);
-    const {
-        categoryname,
-        description,
-        quantity,
-    } = req.body;
-    try {
-        
-         
-         let imagePath = req.file.path
-         if (imagePath.includes('public\\')) {
-            imagePath = imagePath.replace('public\\', '');
-         } else if (imagePath.includes('public/')) {
-            imagePath = imagePath.replace('public/', '');
-         }
-    
+            })
 
+            if (categorydata) {
+                console.log("data will be saved in db");
+            }
+            res.redirect('back');
 
-        const categorydata = await category.create({
-            category_name: categoryname,
-            category_description: description,
-            category_qty:  parseInt(quantity),
-            category_image_url: imagePath,
-
-        })
-
-        if (categorydata) {
-            console.log("data will be saved in db");
+        } catch (error) {
+            console.error('Error creating user:', error);
+            res.status(500).send('Internal Server Error');
         }
-        res.redirect('back');
-       
-    } catch (error) {
-        console.error('Error creating user:', error);
-        res.status(500).send('Internal Server Error');
-    }
-},
-editcategory: async (req, res) => {
-    console.log("product  is start to edit ",req.body);
-    const {
-        categoryname,
-        description,
-        quantity,
-        categoryid,
-    } = req.body;
-
-    try {
-
-
-
-        const categorydata = {
-            category_name: categoryname,
-            category_description: description,
-            category_qty: quantity,
-
-        }
-
-         let data_status = await category.findByIdAndUpdate(
+    },
+    editcategory: async (req, res) => {
+        console.log("product  is start to edit ", req.body);
+        const {
+            categoryname,
+            description,
+            quantity,
             categoryid,
-            categorydata,
-            { new: true });
+        } = req.body;
 
-        if (data_status) {
-            console.log("data will be saved in db", categorydata);
+        try {
+
+
+
+            const categorydata = {
+                category_name: categoryname,
+                category_description: description,
+                category_qty: quantity,
+
+            }
+
+            let data_status = await category.findByIdAndUpdate(
+                categoryid,
+                categorydata,
+                { new: true });
+
+            if (data_status) {
+                console.log("data will be saved in db", categorydata);
+            }
+
+
+            let data = {
+                "status": true
+
+            };
+            res.json(data);
+        } catch (error) {
+            console.error('Error creating user:', error);
+            res.status(500).send('Internal Server Error');
         }
-
-
-        let data = {
-          "status":true
-
-        };
-        res.json(data);
-    } catch (error) {
-        console.error('Error creating user:', error);
-        res.status(500).send('Internal Server Error');
     }
-}
 
-,
-productstatus: async function (req, res) {
-    console.log("The status upadation starting... ",req.body);
-    let productId = req.body.id
-    let msg ='error'
-    let current_st ;
-    try {
-        const doc = await product.findById(productId);
-        console.log('data base connecter' );
+    ,
+    productstatus: async function (req, res) {
+        console.log("The status upadation starting... ", req.body);
+        let productId = req.body.id
+        let msg = 'error'
+        let current_st;
+        try {
+            const doc = await product.findById(productId);
+            console.log('data base connecter');
 
-        if(req.body.current_status==='true'){
-            doc.set('product_status', false);
-            msg ="unlist"
-            current_st=false;
-        } else {
-            doc.set('product_status', true);
-            msg ="list"
-            current_st=true;
+            if (req.body.current_status === 'true') {
+                doc.set('product_status', false);
+                msg = "unlist"
+                current_st = false;
+            } else {
+                doc.set('product_status', true);
+                msg = "list"
+                current_st = true;
+            }
+            let status = await doc.save();
+
+            if (status) {
+                console.log('the code completed');
+                res.json({ st: true, id: productId, msg, current_st });
+            } else {
+                res.json({ st: false });
+            }
+        } catch (err) {
+            res.status(500).send("server error");
         }
-        let status = await doc.save();
- 
-        if (status) {
-            console.log('the code completed');
-            res.json({ st: true ,id:productId,msg,current_st});
-        } else {
-            res.json({ st: false });
-        }
-    } catch (err) {
-        res.status(500).send("server error");
     }
- }
- 
+    ,
+
+    deletecategory: async function (req, res) {
+        console.log("get the delete req");
+        let categoryId = req.params.id
+        try {
+            const doc = await category.findById(categoryId);
+            console.log(doc);
+
+            console.log(doc.category_image_url);
+            try {
+
+                let newPath = doc.category_image_url.replace(/\\/g, "/");
+                newPath = path.join("public", newPath);
+                console.log(newPath);
+                let del = await fs.unlinkSync(newPath)
+
+            } catch (error) {
+                console.log(`can't track the given path`)
+            }
+
+            console.log("req is cuntinue");
+
+
+            const status = await category.findByIdAndRemove(categoryId)
+            if (status) {
+                res.json({ st: true, id: categoryId });
+
+            }
+            else {
+                res.json({ st: false });
+
+            }
+
+        } catch (err) {
+            res.status(500).send({ st: false });
+        }
+    }
 
 
 
 
 
-
-//====================EDNING OF EXPORT==================
+    //====================EDNING OF EXPORT==================
 }
 
 

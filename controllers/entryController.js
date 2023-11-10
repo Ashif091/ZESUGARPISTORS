@@ -3,13 +3,21 @@ const OTP = require("../models/otpModel")
 const asyncHandler = require("express-async-handler")
 const nodemailer = require('nodemailer')
 const bcrypt = require("bcrypt")
-
+// ================
+const product = require("../models/productSchema")
+const category = require("../models/category")
+// ============
 module.exports = {
     login: ((req, res) => {
         res.status(208).redirect('/');
     }),
-    home: ((req, res) => {
-        res.status(201).render("home.ejs", { name: req.session.username.name })
+    home: ( async (req, res) => {
+        let categorylist = await category.aggregate([{ $lookup: { from: "products", localField: "category_name", foreignField: "product_category", as: "product_data" } }]);
+
+        let productlist = await product.find({})
+        
+
+        res.status(201).render("home.ejs", { name: req.session.username.name,categorylist,productlist})
     })
     ,
     registerpage: ((req, res) => {

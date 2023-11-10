@@ -175,10 +175,22 @@
     margin-top: 10px;
     transition: 0.5s ease;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
 }
 .card:hover{
     transform: translateY(-10px);
 }
+.out-of-stock-label {
+    position: absolute;
+    top: 40px;
+    left: 70px;
+    width: 100%;
+    background-color: red;
+    color: white;
+    text-align: center;
+    transform: rotate(45deg);
+  }
 /* top cards end */
 /* banner */
 .banner{

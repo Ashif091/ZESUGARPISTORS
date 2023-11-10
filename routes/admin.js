@@ -39,6 +39,7 @@ const {logout,
     categoryPOST,
     editcategory,
     productstatus,
+    deletecategory,
 }=require("../controllers/adminController")
 router.route("/logout").get(logout)
 router.route("/").get( adminAuthenticate,adlogin).post(admincheck)
@@ -72,6 +73,7 @@ const single_upload = multer({ storage: storage }).single('image');
 
 router.route("/categorymanagement").get(categoryGET).post(single_upload,categoryPOST)
 router.route('/categorymanagement/edit').get(categoryGET).post(editcategory)
+router.route('/deletecategory/:id').delete(deletecategory)
 
 
 

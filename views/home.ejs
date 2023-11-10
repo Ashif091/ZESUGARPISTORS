@@ -2,897 +2,410 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZESUGAR PISTORS</title>
-    <link rel="shortcut icon" type="image" href="./image/logo.png">
-    <link rel="stylesheet" href="/style.css">
-    <!-- bootstrap links -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-    <!-- bootstrap links -->
-    <!-- fonts links -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Uchen&display=swap" rel="stylesheet">
-    <!-- fonts links -->
-    <!-- icons links -->
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-    <!-- icons links -->
-    <!-- animation links -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- animation links -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZESUGAR PISTORS</title>
+  <link rel="shortcut icon" type="image" href="./image/logo.png">
+  <link rel="stylesheet" href="/style.css">
+  <!-- bootstrap links -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <!-- bootstrap links -->
+  <!-- fonts links -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Uchen&display=swap" rel="stylesheet">
+  <!-- fonts links -->
+  <!-- icons links -->
+  <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+  <!-- icons links -->
+  <!-- animation links -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- animation links -->
 </head>
 
 <body>
-    <div class="all-content">
-        <!-- navbar -->
-        <nav class="navbar navbar-expand-md" id="navbar">
-            <!-- Brand -->
-            <a class="navbar-brand" href="#" id="logo"><img src="./image/logo.png" alt="" width="70px">ZESUGAR
-                PISTORS</a>
+  <div class="all-content">
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-md" id="navbar">
+      <!-- Brand -->
+      <a class="navbar-brand" href="#" id="logo"><img src="./image/logo.png" alt="" width="70px">ZESUGAR
+        PISTORS</a>
 
-            <!--collapsibe Button -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-                <span><img src="./image/menu.png" alt="" width="30px"></span>
-            </button>
+      <!--collapsibe Button -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span><img src="./image/menu.png" alt="" width="30px"></span>
+      </button>
 
-            <!-- Navbar links -->
-            <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <!-- dropdown -->
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
-                            Category
-                        </a>
-                        <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item">Chocolate Brownies</a>
-                            <a href="#" class="dropdown-item">Fruit Brownies</a>
-                            <a href="#" class="dropdown-item">Nuts Brownies</a>
-                            <a href="#" class="dropdown-item">Cookie Brownies</a>
-                            <a href="#" class="dropdown-item">Cup brownies</a>
-                        </div>
-                    </li>
-
-                    <!-- dropdown end-->
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Galary</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                </ul>
+      <!-- Navbar links -->
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <!-- dropdown -->
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
+              Category
+            </a>
+            <div class="dropdown-menu">
+              <a href="#" class="dropdown-item">Chocolate Brownies</a>
+              <a href="#" class="dropdown-item">Fruit Brownies</a>
+              <a href="#" class="dropdown-item">Nuts Brownies</a>
+              <a href="#" class="dropdown-item">Cookie Brownies</a>
+              <a href="#" class="dropdown-item">Cup brownies</a>
             </div>
-            <!-- nav bar links end -->
-            <!-- side logos -->
-            <div class="icons">
+          </li>
+
+          <!-- dropdown end-->
+          <li class="nav-item">
+            <a class="nav-link" href="#">Galary</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+      <!-- nav bar links end -->
+      <!-- side logos -->
+      <div class="icons">
 
 
-                <img src="./image/heart.png" alt="" width="20px">
-                <img src="./image/add.png" alt="" width="24px">
-            </div>
-            <!-- node -->
-            <div>
-                <a href="#" class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
-                    <%= name %>
-                </a>
-                <div style="background-color:transparent;" class="dropdown-menu menubar">
-                    <div class="btnclass">
-                        <form action="/logout" method="get">
-                            <button class="btnsub" type="submit">logout</button>
-                        </form>
-                    </div>
-                    <div class="btnclasscard">
-                        <form action="/card" method="post">
-                            <button class="btnsub" type="submit">card</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!-- side logo end -->
-        </nav>
-
-        <!-- navbar end -->
-
-
-
-        <!-- home section -->
-        <div class="home">
-            <div class="content" data-aos="zoom-out-right">
-                <h3>
-                    ZESUGAR PISTORS
-                </h3>
-                <h2><span class="changecontent"></span></h2>
-                <p>
-                    EVERY FLAVOUR HAS A STORY.<br> FROM OUR KITCHEN TO YOUR HEARTS.<br>SUGAR FREE DIET BROWNIES AND
-                    CAKES. . .
-
-                </p>
-                <a href="#" class="btn">Order Now</a>
-            </div>
-            <div class="img" data-aos="zoom-out-left">
-                <img src="./image/background.png" alt="">
-            </div>
+        <img src="./image/heart.png" alt="" width="20px">
+        <img src="./image/add.png" alt="" width="24px">
+      </div>
+      <!-- node -->
+      <div>
+        <a href="#" class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
+          <%= name %>
+        </a>
+        <div style="background-color:transparent;" class="dropdown-menu menubar">
+          <div class="btnclass">
+            <form action="/logout" method="get">
+              <button class="btnsub" type="submit">logout</button>
+            </form>
+          </div>
+          <div class="btnclasscard">
+            <form action="/card" method="post">
+              <button class="btnsub" type="submit">card</button>
+            </form>
+          </div>
         </div>
-        <!-- home section end -->
+      </div>
+      <!-- side logo end -->
+    </nav>
 
-        <!-- top cards -->
-        <div class="container" id="box" data-aos="fade-up" data-aos-duration="1500">
-            <div class="row">
-                <div class="col-md-4 py-3 py-md-0">
-                    <div class="card">
-                        <img src="./image/box1.jpg" alt="!">
-                    </div>
-                </div>
-                <div class="col-md-4 py-3 py-md-0">
-                    <div class="card">
-                        <img src="./image/box2.jpg" alt="!">
-                    </div>
-                </div>
-                <div class="col-md-4 py-3 py-md-0">
-                    <div class="card">
-                        <img src="./image/box3.jpg" alt="!">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- top cards end -->
-
-        <!-- banner -->
-        <div class="banner" data-aos="fade-up" data-aos-duration="1500">
-            <div class="content">
-                <h3>SUGAR FREE DIET BROWNIES</h3>
-                <h2>UPTO 50% OFF</h2>
-
-                <div id="btnorder"><button class="btn">Order Now</button></div>
-            </div>
-            <div class="img">
-                <img src="./image/banner-background.png" alt="!">
-            </div>
-        </div>
-        <!-- banner end -->
-
-        <!-- product cards -->
-        <!--BROWNIES cards  -->
-        <section id="product-cards" data-aos="fade-up" data-aos-duration="1500">
-            <div class="container">
-                <h1>PREMIUM ZESUGAR BROWNIES</h1>
-                <div class="row" style="margin-top:50px;">
-                    <div class="col-md-6 col-lg-3 py-3 py-md-0">
-                        <div class="card">
-                            <div class="overlay">
-                                <button type="button" class="btn-side" title="Quick View"><i><img
-                                            src="./image/views.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Wishlist"><i><img
-                                            src="./image/heart.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Cart"><i><img src="./image/add.png"
-                                            alt="" width="30px"></i></button>
-                            </div>
-                            <img src="./image/c1.png" alt="">
-                            <div class="card-body">
-                                <h3>Pistachio </h3>
-                                <div class="star">
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                </div>
-                                <p>Fudgy pistachio brownies with dark chocolate.
-                                    <br><br><br>
-                                </p>
-                                <h6>49 DHS <span><button>Add Cart</button></span></h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 py-3 py-md-0">
-                        <div class="card">
-                            <div class="overlay">
-                                <button type="button" class="btn-side" title="Quick View"><i><img
-                                            src="./image/views.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Wishlist"><i><img
-                                            src="./image/heart.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Cart"><i><img src="./image/add.png"
-                                            alt="" width="30px"></i></button>
-                            </div>
-                            <img src="./image/c2.png" alt="">
-                            <div class="card-body">
-                                <h3>Peanut </h3>
-                                <div class="star">
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                </div>
-                                <p>Fudgy peanut brownie with live peanut butter.</p>
-                                <br>
-                                <h6>45 DHS <span><button>Add Cart</button></span></h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 py-3 py-md-0">
-                        <div class="card">
-                            <div class="overlay">
-                                <button type="button" class="btn-side" title="Quick View"><i><img
-                                            src="./image/views.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Wishlist"><i><img
-                                            src="./image/heart.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Cart"><i><img src="./image/add.png"
-                                            alt="" width="30px"></i></button>
-                            </div>
-                            <img src="./image/c3.png" alt="">
-                            <div class="card-body">
-                                <h3>BADAM </h3>
-                                <div class="star">
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                </div>
-                                <p>Fudgy zesugar brownies with natural crushed badam.</p>
-                                <h6>49 DHS <span><button>Add Cart</button></span></h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 py-3 py-md-0">
-                        <div class="card">
-                            <div class="overlay">
-                                <button type="button" class="btn-side" title="Quick View"><i><img
-                                            src="./image/views.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Wishlist"><i><img
-                                            src="./image/heart.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Cart"><i><img src="./image/add.png"
-                                            alt="" width="30px"></i></button>
-                            </div>
-                            <img src="./image/c4.png" alt="">
-                            <div class="card-body">
-                                <h3>Date</h3>
-                                <div class="star">
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                </div>
-                                <p>Cakey zesugar date brownies with real medjool dates.</p>
-                                <br>
-                                <h6>42 DHS <span><button>Add Cart</button></span></h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-        </section>
-        <!-- BROWNIE -->
-        <section id="product-cards" data-aos="fade-up" data-aos-duration="1500">
-            <div class="container">
-                <h1>BROWNIES</h1>
-                <div class="row" style="margin-top:50px;">
-                    <div class="col-md-6 col-lg-3 py-3 py-md-0">
-                        <div class="card">
-                            <div class="overlay">
-                                <button type="button" class="btn-side" title="Quick View"><i><img
-                                            src="./image/views.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Wishlist"><i><img
-                                            src="./image/heart.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Cart"><i><img src="./image/add.png"
-                                            alt="" width="30px"></i></button>
-                            </div>
-                            <img src="./image/x1.png" style="border-radius: 15px;" alt="">
-                            <div class="card-body">
-                                <h3>Choco chip </h3>
-                                <div class="star">
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star "></i>
-                                    <i class="bx bxs-star "></i>
-                                </div>
-                                <p>Cakey chocolate brownie with zesugar dark chocolate filling.</p>
-                                <h6>35 DHS <span><button>Add Cart</button></span></h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 py-3 py-md-0">
-                        <div class="card">
-                            <div class="overlay">
-                                <button type="button" class="btn-side" title="Quick View"><i><img
-                                            src="./image/views.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Wishlist"><i><img
-                                            src="./image/heart.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Cart"><i><img src="./image/add.png"
-                                            alt="" width="30px"></i></button>
-                            </div>
-                            <img src="./image/x2.png" style="border-radius: 15px;" alt="">
-                            <div class="card-body">
-                                <h3>Cinnamon </h3>
-                                <div class="star">
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star "></i>
-                                    <i class="bx bxs-star "></i>
-                                </div>
-                                <p>Naturally extracted zesugar cinnamon brownie with .</p>
-                                <br>
-                                <h6>39 DHS <span><button>Add Cart</button></span></h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 py-3 py-md-0">
-                        <div class="card">
-                            <div class="overlay">
-                                <button type="button" class="btn-side" title="Quick View"><i><img
-                                            src="./image/views.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Wishlist"><i><img
-                                            src="./image/heart.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Cart"><i><img src="./image/add.png"
-                                            alt="" width="30px"></i></button>
-                            </div>
-                            <img src="./image/x3.png" style="border-radius: 15px;" alt="">
-                            <div class="card-body">
-                                <h3>Vanilla</h3>
-                                <div class="star">
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star "></i>
-                                </div>
-                                <p>Zesugar creamy vanilla cake .</p>
-
-                                <h6>34 DHS <span><button>Add Cart</button></span></h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 py-3 py-md-0">
-                        <div class="card">
-                            <div class="overlay">
-                                <button type="button" class="btn-side" title="Quick View"><i><img
-                                            src="./image/views.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Wishlist"><i><img
-                                            src="./image/heart.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Cart"><i><img src="./image/add.png"
-                                            alt="" width="30px"></i></button>
-                            </div>
-                            <img src="./image/x4.png " style="border-radius: 15px;" alt="">
-                            <div class="card-body">
-                                <h3> Rose</h3>
-                                <div class="star">
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                </div>
-                                <p>Cakey rose brownie with natural dry rose.</p>
-                                <br><br><br>
-                                <h6>49 DHS <span><button>Add Cart</button></span></h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- navbar end -->
 
 
 
+    <!-- home section -->
+    <div class="home">
+      <div class="content" data-aos="zoom-out-right">
+        <h3>
+          ZESUGAR PISTORS
+        </h3>
+        <h2><span class="changecontent"></span></h2>
+        <p>
+          EVERY FLAVOUR HAS A STORY.<br> FROM OUR KITCHEN TO YOUR HEARTS.<br>SUGAR FREE DIET BROWNIES AND
+          CAKES. . .
 
-
-
-                <div class="row" style="margin-top:50px;" data-aos="fade-up" data-aos-duration="1500">
-                    <div class="col-md-6 col-lg-3 py-3 py-md-0">
-                        <div class="card">
-                            <div class="overlay">
-                                <button type="button" class="btn-side" title="Quick View"><i><img
-                                            src="./image/views.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Wishlist"><i><img
-                                            src="./image/heart.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Cart"><i><img src="./image/add.png"
-                                            alt="" width="30px"></i></button>
-                            </div>
-                            <img src="./image/x5.png" style="border-radius: 15px;" alt="">
-                            <div class="card-body">
-                                <h3> Beetroot</h3>
-                                <div class="star">
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star "></i>
-                                    <i class="bx bxs-star "></i>
-                                </div>
-                                <p>Fudge beetroot brownie with natural beetroot extract.</p>
-                                <h6>29 DHS <span><button>Add Cart</button></span></h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 py-3 py-md-0">
-                        <div class="card">
-                            <div class="overlay">
-                                <button type="button" class="btn-side" title="Quick View"><i><img
-                                            src="./image/views.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Wishlist"><i><img
-                                            src="./image/heart.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Cart"><i><img src="./image/add.png"
-                                            alt="" width="30px"></i></button>
-                            </div>
-                            <img src="./image/x6.png" style="border-radius: 15px; overflow: hidden; " alt="">
-                            <div class="card-body">
-                                <h3>Walnut </h3>
-                                <div class="star">
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star "></i>
-                                    <i class="bx bxs-star "></i>
-                                </div>
-                                <p>Crispy walnut brownie with real crushed walnut.</p>
-                                <h6>49 DHS <span><button>Add Cart</button></span></h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 py-3 py-md-0">
-                        <div class="card">
-                            <div class="overlay">
-                                <button type="button" class="btn-side" title="Quick View"><i><img
-                                            src="./image/views.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Wishlist"><i><img
-                                            src="./image/heart.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Cart"><i><img src="./image/add.png"
-                                            alt="" width="30px"></i></button>
-                            </div>
-                            <img src="./image/c5.jpeg" style="border-radius: 15px;" alt="">
-                            <div class="card-body">
-                                <h3>Cookie</h3>
-                                <div class="star">
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star "></i>
-                                </div>
-                                <p>Crispy zesugar cookie brownie with choco chip.</p>
-                                <br>
-                                <h6>38 DHS<span><button>Add Cart</button></span></h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 py-3 py-md-0">
-                        <div class="card">
-                            <div class="overlay">
-                                <button type="button" class="btn-side" title="Quick View"><i><img
-                                            src="./image/views.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Wishlist"><i><img
-                                            src="./image/heart.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Cart"><i><img src="./image/add.png"
-                                            alt="" width="30px"></i></button>
-                            </div>
-                            <img src="./image/x8.png" style="border-radius: 15px;" alt="">
-                            <div class="card-body">
-                                <h3>Cheesecake</h3>
-                                <div class="star">
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                </div>
-                                <p>Cheesy cakey cheesecake browni.</p>
-
-                                <h6>49 DHS <span><button>Add Cart</button></span></h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> <!-- brownies end  -->
-
-
-        <!-- cakes -->
-        <section id="product-cards" data-aos="fade-up" data-aos-duration="1500">
-            <div class="container">
-                <h1>CAKES</h1>
-                <div class="row" style="margin-top:50px;">
-                    <div class="col-md-6 col-lg-3 py-3 py-md-0">
-                        <div class="card">
-                            <div class="overlay">
-                                <button type="button" class="btn-side" title="Quick View"><i><img
-                                            src="./image/views.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Wishlist"><i><img
-                                            src="./image/heart.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Cart"><i><img src="./image/add.png"
-                                            alt="" width="30px"></i></button>
-                            </div>
-                            <img src="./image/ck1.png" alt="">
-                            <div class="card-body">
-                                <h3>Pumpkin Cake</h3>
-                                <div class="star">
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star "></i>
-                                    <i class="bx bxs-star "></i>
-                                </div>
-                                <p>Soft zesugar fluffy pumpkin cake with natural pumpkin.</p>
-                                <br>
-                                <h6>49 DHS <span><button>Add Cart</button></span></h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 py-3 py-md-0">
-                        <div class="card">
-                            <div class="overlay">
-                                <button type="button" class="btn-side" title="Quick View"><i><img
-                                            src="./image/views.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Wishlist"><i><img
-                                            src="./image/heart.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Cart"><i><img src="./image/add.png"
-                                            alt="" width="30px"></i></button>
-                            </div>
-                            <img src="./image/ck8.png" alt="">
-                            <div class="card-body">
-                                <h3>Fruit Cake</h3>
-                                <div class="star">
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star "></i>
-                                    <i class="bx bxs-star "></i>
-                                </div>
-                                <p>Delicious zesugar mixed fruit cake with real fruits.</p>
-                                <br>
-                                <h6>38 DHS <span><button>Add Cart</button></span></h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 py-3 py-md-0">
-                        <div class="card">
-                            <div class="overlay">
-                                <button type="button" class="btn-side" title="Quick View"><i><img
-                                            src="./image/views.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Wishlist"><i><img
-                                            src="./image/heart.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Cart"><i><img src="./image/add.png"
-                                            alt="" width="30px"></i></button>
-                            </div>
-                            <img src="./image/ck3.png" alt="">
-                            <div class="card-body">
-                                <h3>Nut Cake</h3>
-                                <div class="star">
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star "></i>
-                                </div>
-                                <p>Soft protein nut cake with crunchy nut covering.</p>
-                                <br>
-                                <h6>49 DHS <span><button>Add Cart</button></span></h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 py-3 py-md-0">
-                        <div class="card">
-                            <div class="overlay">
-                                <button type="button" class="btn-side" title="Quick View"><i><img
-                                            src="./image/views.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Wishlist"><i><img
-                                            src="./image/heart.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Cart"><i><img src="./image/add.png"
-                                            alt="" width="30px"></i></button>
-                            </div>
-                            <img src="./image/ck4.png" alt="">
-                            <div class="card-body">
-                                <h3>Butter Cake</h3>
-                                <div class="star">
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                </div>
-                                <p>Delicious fluffy butter cake with natural peanut and peanut butter fillings.</p>
-                                <h6>38 DHS <span><button>Add Cart</button></span></h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-
-
-                <div class="row" style="margin-top:50px;" data-aos="fade-up" data-aos-duration="1500">
-                    <div class="col-md-6 col-lg-3 py-3 py-md-0">
-                        <div class="card">
-                            <div class="overlay">
-                                <button type="button" class="btn-side" title="Quick View"><i><img
-                                            src="./image/views.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Wishlist"><i><img
-                                            src="./image/heart.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Cart"><i><img src="./image/add.png"
-                                            alt="" width="30px"></i></button>
-                            </div>
-                            <img src="./image/ck5.png" alt="">
-                            <div class="card-body">
-                                <h3>Date Cake</h3>
-                                <div class="star">
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star "></i>
-                                    <i class="bx bxs-star "></i>
-                                </div>
-                                <p>Messy fluffy zesugar date cake with real smashed medjool date .</p>
-                                <h6>49 DHS <span><button>Add Cart</button></span></h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 py-3 py-md-0">
-                        <div class="card">
-                            <div class="overlay">
-                                <button type="button" class="btn-side" title="Quick View"><i><img
-                                            src="./image/views.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Wishlist"><i><img
-                                            src="./image/heart.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Cart"><i><img src="./image/add.png"
-                                            alt="" width="30px"></i></button>
-                            </div>
-                            <img src="./image/ck6.png" alt="">
-                            <div class="card-body">
-                                <h3>Cookie cakes</h3>
-                                <div class="star">
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star "></i>
-                                    <i class="bx bxs-star "></i>
-                                </div>
-                                <p>Crunchy zesugar protein cookie cake with choco chip fillings.</p>
-
-                                <h6>39 DHS <span><button>Add Cart</button></span></h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 py-3 py-md-0">
-                        <div class="card">
-                            <div class="overlay">
-                                <button type="button" class="btn-side" title="Quick View"><i><img
-                                            src="./image/views.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Wishlist"><i><img
-                                            src="./image/heart.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Cart"><i><img src="./image/add.png"
-                                            alt="" width="30px"></i></button>
-                            </div>
-                            <img src="./image/ck7.png" alt="">
-                            <div class="card-body">
-                                <h3>Plum Cake</h3>
-                                <div class="star">
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star "></i>
-                                </div>
-                                <p>Fluffy zesugar fruit and nut plum cake with nut fillings.</p>
-                                <br>
-
-                                <h6>29 DHS<span><button>Add Cart</button></span></h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 py-3 py-md-0">
-                        <div class="card">
-                            <div class="overlay">
-                                <button type="button" class="btn-side" title="Quick View"><i><img
-                                            src="./image/views.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Wishlist"><i><img
-                                            src="./image/heart.png" alt="" width="30px"></i></button>
-                                <button type="button" class="btn-side" title="Add to Cart"><i><img src="./image/add.png"
-                                            alt="" width="30px"></i></button>
-                            </div>
-                            <img src="./image/ck2.png" alt="">
-                            <div class="card-body">
-                                <h3>Chocolate Cake </h3>
-                                <div class="star">
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                    <i class="bx bxs-star checked"></i>
-                                </div>
-                                <p>Low carb chocolate cake with natural dark chocolate filling.</p>
-                                <h6>42 DHS <span><button>Add Cart</button></span></h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--  -->
-        <!-- brithday cake -->
-
-
-        <!-- product cards end-->
-
-
-        <!-- gallary -->
-        <section id="gallary" data-aos="fade-up" data-aos-duration="1500">
-            <div class="container">
-                <h1>OUR GALLARY</h1>
-                <div class="row" style="margin-top: 30px;">
-                    <div class="col-md-4 py-3 py-md-0">
-                        <div class="card">
-                            <div class="textname">
-                                <h3 class="text-center">Donuts</h3>
-                            </div>
-                            <img src="./image/o1.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-4 py-3 py-md-0">
-                        <div class="card">
-                            <div class="textname">
-                                <h3 class="text-center">Jelly</h3>
-                            </div>
-                            <img src="./image/g3.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-4 py-3 py-md-0">
-                        <div class="card">
-                            <div class="textname">
-                                <h3 class="text-center">Muffin </h3>
-                            </div>
-                            <img src="./image/o3.png" alt="">
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="row" style="margin-top: 30px;" data-aos="fade-up" data-aos-duration="1500">
-                    <div class="col-md-4 py-3 py-md-0">
-                        <div class="card">
-                            <div class="textname">
-                                <h3 class="text-center">Delicious Cake</h3>
-                            </div>
-                            <img src="./image/o4.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-4 py-3 py-md-0">
-                        <div class="card">
-                            <div class="textname">
-                                <h3 class="text-center">Chocolate</h3>
-                            </div>
-                            <img src="./image/g2.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-4 py-3 py-md-0">
-                        <div class="card">
-                            <div class="textname">
-                                <h3 class="text-center">Slice Cake</h3>
-                            </div>
-                            <img src="./image/o6.png" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- gallary -->
-
-
-
-
-
-        <!-- about -->
-        <div class="container" id="about" data-aos="fade-up" data-aos-duration="1500">
-            <h1>ABOUT US</h1>
-            <div class="row">
-                <div class="col-md-6 py-3 py-md-0">
-                    <div class="card">
-                        <img src="./image/about.png" alt="">
-                    </div>
-                </div>
-                <div class="col-md-6 py-3 py-md-0">
-                    <p style=" color: rgb(241, 186, 202); line-height: 2;">Zesugar Pistors enterprises established in
-                        2023 is one of UAE's largest fast growing bakers with almost ten bakery outlets within the
-                        country .We unlock the power of food to enhance quality of food not to the rich, not to the
-                        poor,but to everyone.We take on board the people who have fallen under the great ban of
-                        lifestyle diseases such as diabetes and cholesterol,but have great cravings for sweets and
-                        desert and have come up with ZESUGAR (Zerosugar) brownies and cakes.We look forward to
-                        introducing varieties of flavours to the hearts of UAE. We do not focus on the customers but
-                        their health.</p>
-
-                    <div id="bt"><button>Read More...</button></div>
-                </div>
-            </div>
-        </div>
-        <!-- about -->
-
-
-        <!-- contact  -->
-        <div class="container" id="contact" data-aos="fade-up" data-aos-duration="1500">
-            <h1>CONTACT US</h1>
-            <div class="row">
-                <div class="col-md-4 py-1 py-md-0">
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="usr" placeholder="Name">
-                    </div>
-                </div>
-                <div class="col-md-4 py-1 py-md-0">
-                    <div class="form-group">
-                        <input type="email" class="form-control" id="eml" placeholder="Email">
-                    </div>
-                </div>
-                <div class="col-md-4 py-1 py-md-0">
-                    <div class="form-group">
-                        <input type="number" class="form-control" id="phn" placeholder="Phone">
-                    </div>
-                </div>
-
-            </div>
-            <div class="form-group">
-                <textarea class="form-control" rows="5" id="comment" placeholder="Message"></textarea>
-            </div>
-            <div id="messagebtn"><button>Send Message</button></div>
-        </div>
-        <!-- contact end -->
-
-
-        <!-- footer -->
-        <footer id="footer" data-aos="fade-up" data-aos-duration="1500">
-            <h1 class="text-center">ZESUGAR PISTORS</h1>
-            <p class="text-center">Contact us whenever or wherever you are.</p>
-            <div class="icons text-center">
-                <i class="bx bxl-twitter"></i>
-                <i class="bx bxl-facebook"></i>
-                <i class="bx bxl-google"></i>
-                <i class="bx bxl-skype"></i>
-                <i class="bx bxl-instagram"></i>
-            </div>
-            <div class="copyright text-center">
-                <img width="100px" src="./image/keep.png" alt="">
-            </div>
-
-        </footer>
-        <!-- footer -->
-
-        <a href="#" class="arrow"><i><img src="./image/up-arrow.png" alt="" width="50px"></i></a>
-
-
+        </p>
+        <a href="#" class="btn">Order Now</a>
+      </div>
+      <div class="img" data-aos="zoom-out-left">
+        <img src="./image/background.png" alt="">
+      </div>
     </div>
+    <!-- home section end -->
+
+    <!-- top cards -->
+    <div class="container" id="box" data-aos="fade-up" data-aos-duration="1500">
+      <div class="row">
+        <div class="col-md-4 py-3 py-md-0">
+          <div class="card">
+            <img src="./image/box1.jpg" alt="!">
+          </div>
+        </div>
+        <div class="col-md-4 py-3 py-md-0">
+          <div class="card">
+            <img src="./image/box2.jpg" alt="!">
+          </div>
+        </div>
+        <div class="col-md-4 py-3 py-md-0">
+          <div class="card">
+            <img src="./image/box3.jpg" alt="!">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- top cards end -->
+
+    <!-- banner -->
+    <div class="banner" data-aos="fade-up" data-aos-duration="1500">
+      <div class="content">
+        <h3>SUGAR FREE DIET BROWNIES</h3>
+        <h2>UPTO 50% OFF</h2>
+
+        <div id="btnorder"><button class="btn">Order Now</button></div>
+      </div>
+      <div class="img">
+        <img src="./image/banner-background.png" alt="!">
+      </div>
+    </div>
+    <!-- banner end -->
+
+    <!-- product cards -->
+    <!--BROWNIES cards  -->
+    <% categorylist.forEach(category=> { %>
+    <% if(category.product_data.length>0){ %>
+    <section id="product-cards" data-aos="fade-up" data-aos-duration="1500">
+
+      <div class="container">
+        <h1>
+          <%= category.category_name %>
+        </h1>
+        <div class="row" style="margin-top:50px;">
+          <!-- cart data -->
+          <% productlist.forEach(product=> {%>
+          <% if(product.product_category==category.category_name){ %>
+
+          <div class="col-md-6 col-lg-3 py-3 py-md-0">
+
+            <div class="card">
+             
+
+              <div class="overlay">
+                <button type="button" class="btn-side" title="Quick View"><i><img src="./image/views.png" alt="" width="30px"></i></button>
+                <button type="button" class="btn-side" title="Add to Wishlist"><i><img src="./image/heart.png" alt="" width="30px"></i></button>
+                <button type="button" class="btn-side" title="Add to Cart"><i><img src="./image/add.png" alt="" width="30px"></i></button>
+              </div>
+              <img src="/<%=product.product_image_url[0]%>" alt="">
+              <div class="card-body">
+                <h3>
+                  <%=product.product_name%>
+                </h3>
+                <div class="star">
+                  <i class="bx bxs-star checked"></i>
+                  <i class="bx bxs-star checked"></i>
+                  <i class="bx bxs-star checked"></i>
+                  <i class="bx bxs-star checked"></i>
+                  <i class="bx bxs-star checked"></i>
+                </div>
+                <p style="height: 70px;">
+                  <%=product.product_description%>
+                  
+                </p>
+                <h6>
+                  <%=product.product_price%> DHS <span><button>Add
+                      Cart</button></span>
+                </h6>
+              </div>
+              <% if(product.product_status === false) { %>
+                <div class="out-of-stock-label">
+                  Out of Stock
+                </div>
+              <% } %>
+            </div>
+
+
+          </div>
+          <% } %>
+          <% }) %>
+
+
+          <!-- end  -->
+
+          <!--================-->
+
+
+        </div>
+
+      </div>
+    </section>
+    <!-- END -->
+    <% } %>
+    <%})%>
+
+
+    <!-- product cards end-->
+
+
+    <!-- gallary -->
+    <section id="gallary" data-aos="fade-up" data-aos-duration="1500">
+      <div class="container">
+        <h1>OUR GALLARY</h1>
+        <div class="row" style="margin-top: 30px;">
+          <div class="col-md-4 py-3 py-md-0">
+            <div class="card">
+              <div class="textname">
+                <h3 class="text-center">Donuts</h3>
+              </div>
+              <img src="./image/o1.png" alt="">
+            </div>
+          </div>
+          <div class="col-md-4 py-3 py-md-0">
+            <div class="card">
+              <div class="textname">
+                <h3 class="text-center">Jelly</h3>
+              </div>
+              <img src="./image/g3.png" alt="">
+            </div>
+          </div>
+          <div class="col-md-4 py-3 py-md-0">
+            <div class="card">
+              <div class="textname">
+                <h3 class="text-center">Muffin </h3>
+              </div>
+              <img src="./image/o3.png" alt="">
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row" style="margin-top: 30px;" data-aos="fade-up" data-aos-duration="1500">
+          <div class="col-md-4 py-3 py-md-0">
+            <div class="card">
+              <div class="textname">
+                <h3 class="text-center">Delicious Cake</h3>
+              </div>
+              <img src="./image/o4.png" alt="">
+            </div>
+          </div>
+          <div class="col-md-4 py-3 py-md-0">
+            <div class="card">
+              <div class="textname">
+                <h3 class="text-center">Chocolate</h3>
+              </div>
+              <img src="./image/g2.png" alt="">
+            </div>
+          </div>
+          <div class="col-md-4 py-3 py-md-0">
+            <div class="card">
+              <div class="textname">
+                <h3 class="text-center">Slice Cake</h3>
+              </div>
+              <img src="./image/o6.png" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- gallary -->
 
 
 
 
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- about -->
+    <div class="container" id="about" data-aos="fade-up" data-aos-duration="1500">
+      <h1>ABOUT US</h1>
+      <div class="row">
+        <div class="col-md-6 py-3 py-md-0">
+          <div class="card">
+            <img src="./image/about.png" alt="">
+          </div>
+        </div>
+        <div class="col-md-6 py-3 py-md-0">
+          <p style=" color: rgb(241, 186, 202); line-height: 2;">Zesugar Pistors enterprises
+            established in
+            2023 is one of UAE's largest fast growing bakers with almost ten bakery outlets
+            within
+            the
+            country .We unlock the power of food to enhance quality of food not to the rich,
+            not to
+            the
+            poor,but to everyone.We take on board the people who have fallen under the great
+            ban of
+            lifestyle diseases such as diabetes and cholesterol,but have great cravings for
+            sweets
+            and
+            desert and have come up with ZESUGAR (Zerosugar) brownies and cakes.We look
+            forward to
+            introducing varieties of flavours to the hearts of UAE. We do not focus on the
+            customers
+            but
+            their health.</p>
 
-    <script>
-        AOS.init();
-    </script>
-    <script>
-        if (window.history.replaceState) {
-            window.history.replaceState(null, null, window.location.href);
-        }
-    </script>
+          <div id="bt"><button>Read More...</button></div>
+        </div>
+      </div>
+    </div>
+    <!-- about -->
+
+
+    <!-- contact  -->
+    <div class="container" id="contact" data-aos="fade-up" data-aos-duration="1500">
+      <h1>CONTACT US</h1>
+      <div class="row">
+        <div class="col-md-4 py-1 py-md-0">
+          <div class="form-group">
+            <input type="text" class="form-control" id="usr" placeholder="Name">
+          </div>
+        </div>
+        <div class="col-md-4 py-1 py-md-0">
+          <div class="form-group">
+            <input type="email" class="form-control" id="eml" placeholder="Email">
+          </div>
+        </div>
+        <div class="col-md-4 py-1 py-md-0">
+          <div class="form-group">
+            <input type="number" class="form-control" id="phn" placeholder="Phone">
+          </div>
+        </div>
+
+      </div>
+      <div class="form-group">
+        <textarea class="form-control" rows="5" id="comment" placeholder="Message"></textarea>
+      </div>
+      <div id="messagebtn"><button>Send Message</button></div>
+    </div>
+    <!-- contact end -->
+
+
+    <!-- footer -->
+    <footer id="footer" data-aos="fade-up" data-aos-duration="1500">
+      <h1 class="text-center">ZESUGAR PISTORS</h1>
+      <p class="text-center">Contact us whenever or wherever you are.</p>
+      <div class="icons text-center">
+        <i class="bx bxl-twitter"></i>
+        <i class="bx bxl-facebook"></i>
+        <i class="bx bxl-google"></i>
+        <i class="bx bxl-skype"></i>
+        <i class="bx bxl-instagram"></i>
+      </div>
+      <div class="copyright text-center">
+        <img width="100px" src="./image/keep.png" alt="">
+      </div>
+
+    </footer>
+    <!-- footer -->
+
+    <a href="#" class="arrow"><i><img src="./image/up-arrow.png" alt="" width="50px"></i></a>
+
+
+  </div>
+
+
+
+
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <script>
+    AOS.init();
+  </script>
+  <script>
+    if (window.history.replaceState) {
+      window.history.replaceState(null, null, window.location.href);
+    }
+  </script>
 </body>
 
 </html>
