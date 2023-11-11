@@ -20,6 +20,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
   </script>
   <!--  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css">
 
 </head>
 
@@ -366,6 +367,7 @@
               <!--  -->
               <div class="form-floating mb-3">
                 <input type="file" class="form-control" id="productimg" name="image" multiple accept="image/*">
+                <div id="croppie-container"></div>
               </div>
               <!--  -->
               <div class="form-floating mb-3">
@@ -404,6 +406,8 @@
       </div>
     </div>
   </div>
+
+  
   <!-- end  -->
   <!-- delete model  -->
   <!-- Modal for deleting the user -->
@@ -671,6 +675,8 @@
     });
   </script>
 
+ <!-- for croping ===== -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
 
 </body>
 
